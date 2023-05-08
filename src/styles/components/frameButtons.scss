@@ -1,0 +1,36 @@
+.frame-button{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: black;
+    border-radius: 50%;
+    border: #FD7E25 2px solid;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.help-button{
+        bottom: -44px;
+        left: -44px;
+        
+        color: #FD7E25;
+        p{
+            font-size: 4rem;
+            font-family: $font-family;
+            margin: 0;
+        }
+    }
+    
+    &.inventory-button{
+        bottom: -44px;
+        right: -44px;
+        
+        color: #FD7E25;
+        i{
+            size: 40px;
+        }
+    }
+
+
+}

@@ -1,0 +1,19 @@
+.frame-wrapper{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .frame{
+        position: relative;
+        width: 80%;
+        aspect-ratio: 16/9;
+        background-color: black;
+
+        max-height: 80vh;
+
+        border: #FD7E25 4px solid;
+    }
+}
