@@ -1,12 +1,11 @@
-import Icofont from 'react-icofont';
-
+import { Folder } from 'react-feather';
 function Inventory(){
     const handleClick = () => {
         console.log("inventory clicked!")
     }
     return(
         <button className="inventory-button frame-button" onClick={handleClick}>
-            <Icofont icon="ui-folder" size='3'></Icofont>
+           <Folder size={48}/>
         </button>
     )
 }
