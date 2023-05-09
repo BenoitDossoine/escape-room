@@ -6,4 +6,6 @@ body {
   background-image: linear-gradient(to right, rgba(253, 127, 37, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(253, 126, 37,0.3) 1px, transparent 1px);
   background-repeat: repeat;
   background-position: -10px -10px;
+
+  font-family: $font-family;
 }

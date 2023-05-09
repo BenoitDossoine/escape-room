@@ -4,7 +4,7 @@
     height: 80px;
     background-color: black;
     border-radius: 50%;
-    border: #FD7E25 2px solid;
+    border: $main-color 2px solid;
     
     display: flex;
     justify-content: center;
@@ -14,7 +14,7 @@
         bottom: -44px;
         left: -44px;
         
-        color: #FD7E25;
+        color: $main-color;
         p{
             font-size: 4rem;
             font-family: $font-family;
@@ -26,7 +26,7 @@
         bottom: -44px;
         right: -44px;
         
-        color: #FD7E25;
+        color: $main-color;
     }
 
 
