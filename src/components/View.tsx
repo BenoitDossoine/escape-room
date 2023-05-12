@@ -20,8 +20,8 @@ function View(){
             ></FirstPersonControls> */}
             <FlyControls/>
             <Center>
-                <ambientLight intensity={ 0.2 } />
-                <primitive object={model.scene} scale={1.2} position-y={-0.7} position-z={12} position-x={4} rotation-y={-Math.PI/2}/>    
+                <ambientLight intensity={ 0.4 } />
+                <primitive object={model.scene} scale={1.5} position-y={-0.7} position-z={12} position-x={4} rotation-y={-Math.PI/2}/>    
             </Center>
         </Canvas>
     )
