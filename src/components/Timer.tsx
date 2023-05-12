@@ -18,7 +18,7 @@ function Timer(){
                     tap(()=>setTimerOn(false))
                 )
             )
-        ).subscribe(console.log);
+        ).subscribe();
 
         const endTimerSub = endTimer.subscribe(()=>console.log("end"));
 
