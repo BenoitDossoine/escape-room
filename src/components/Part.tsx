@@ -11,6 +11,7 @@ function Part({child, onClick}:any) {
     const [cameraPosition,setCameraPosition] = useState({x: 0,y: 0,z:0})
     const partRef: any = useRef();
     const vec = new THREE.Vector3();
+
     const handleClick = (e:any) => {
       const event = gameLogicService.handleClickEvent(e);
       cameraService.fixedControls = true;
@@ -20,7 +21,7 @@ function Part({child, onClick}:any) {
           setCameraPosition({x: event.eventData.viewPos[0],y: event.eventData.viewPos[1],z: event.eventData.viewPos[2]});
           document.addEventListener("keydown",zoomOut)
       } else if (event.type === "dialog"){
-          store.currentEvent = {type:"dialog"};
+          store.currentEvent = event;
       }
     }
 

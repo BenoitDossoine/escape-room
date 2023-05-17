@@ -5,7 +5,10 @@ type Event = {
     eventData?: any
 }
 
-export const store = proxy<{currentEvent:Event}>({
+
+
+export const store = proxy<{zoomedIn: Boolean,currentEvent:Event}>({
+    zoomedIn: false,
     currentEvent: {
     }
 })
