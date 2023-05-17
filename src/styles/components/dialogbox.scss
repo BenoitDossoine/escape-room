@@ -1,0 +1,43 @@
+.dialogBox{
+    position: absolute;
+    width: 30%;
+    aspect-ratio: 16/9;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    padding: 1em;
+
+    border: $main-color 4px solid;
+    background-color: #000000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: $font-family;
+    color: $main-color;
+    
+    .dialogTitle{
+        font-weight: 400;
+        font-size: 40px;
+        margin: 0.2em 0;
+    }
+
+    .dialogContent{
+        font-size: 20px;
+    }
+
+    .dialogProceedBtn{
+        margin: 0;
+        padding: 0.5em 1em;
+        background-color: $main-color;
+        justify-self: flex-end;
+        font-family: $font-family;
+        font-weight: 500;
+        align-self: flex-end;
+        text-transform: uppercase;
+    }
+}

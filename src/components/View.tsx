@@ -1,20 +1,25 @@
-import { Center } from '@react-three/drei';
+import {Canvas} from '@react-three/fiber';
 import { FlyControls } from '../controls/react-three-fiber/FlyControls';
-import {Canvas, useLoader} from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import Part from './Part';
+
+import DialogBox from './DialogBox';
+import { Suspense } from 'react';
+import { Center } from '@react-three/drei';
 import Model from './Model';
 
 function View(){
-    const object = useLoader(GLTFLoader, './models/room.glb');
     return(
-        <Canvas camera={{position: [0,0,0]}}>
-            <FlyControls/>
-            <Center>
-                <Model/>
-                <ambientLight intensity={ 0.4 } />
-            </Center>
-        </Canvas>
+        <>
+            <Canvas camera={{position: [0,0,0]}}>
+            <Suspense>   
+                <FlyControls/>
+                <Center>
+                    <Model/>
+                    <ambientLight intensity={ 0.4 } />
+                </Center>
+            </Suspense>
+            </Canvas>
+            <DialogBox/>
+        </>
     )
 }
 

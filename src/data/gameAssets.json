@@ -1,0 +1,57 @@
+{
+    "TV":{
+        "type": "zoom",
+        "eventData": {
+            "viewPos": [1.5,-3,-13]
+        }
+    },
+    "Poster":{
+        "type": "zoom",
+        "eventData": {
+            "viewPos": [2,0,0]
+        }
+    },
+    "Chest":{
+        "type": "zoom",
+        "eventData": {
+            "viewPos": [2,0,0]
+        }
+    },
+    "Mat":{
+        "type": "dialog",
+        "eventData": {
+            "dialog": "Just a dusty old mat."
+        }
+    },
+    "Bin":{
+        "type": "dialog",
+        "eventData": {
+            "dialog": "The trash can is (not) empty."
+        }
+    },
+    "Book":{
+        "type": "dialog",
+        "eventData": {
+            "dialog": "Not sure I have time to read..."
+        }
+    },
+    "Keyboard": {
+        "type": "dialog",
+        "eventData": {
+            "dialog": "I could just use mine."
+        }
+    },
+    "PC": {
+        "type": "zoom",
+        "eventData":{
+            "viewPos": [0,0,0]
+        }
+    },
+    "Plant": {
+        "type": "dialog",
+        "eventData": {
+            "dialog": "The only plant I could keep alive."
+        }
+    }
+}
+
