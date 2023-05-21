@@ -10,6 +10,7 @@ const FlyControls = /*#__PURE__*/React.forwardRef(({
   const {
     onChange,
     makeDefault,
+    disabled,
     ...rest
   } = props;
   const invalidate = useThree(state => state.invalidate);

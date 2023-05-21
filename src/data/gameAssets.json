@@ -1,0 +1,71 @@
+{
+    "TV":{
+        "type": "zoom",
+        "eventData": {
+            "viewPos": [0.1, -0.3, -1.2],
+            "viewRot": [0,0,0]
+        }
+    },
+    "Poster":{
+        "type": "zoom",
+        "eventData": {
+            "viewPos": [2,0,0]
+        }
+    },
+    "Chest":{
+        "type": "zoom",
+        "eventData": {
+            "viewPos": [2,0,0]
+        }
+    },
+    "Mat":{
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Mat",
+            "dialogText": "Just a dusty old mat."
+        }
+    },
+    "Bin":{
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Bin",
+            "dialogText": "The trash can is (not) empty."
+        }
+    },
+    "Book":{
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Book",
+            "dialogText": "Not sure I have time to read..."
+        }
+    },
+    "Keyboard": {
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Keyboard",
+            "dialogText": "I could just use mine."
+        }
+    },
+    "PC": {
+        "type": "zoom",
+        "eventData":{
+            "viewPos": [0,0,0]
+        }
+    },
+    "Plant": {
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Plant",
+            "dialogText": "The only plant I could keep alive."
+        }
+    },
+    "Screen":{
+        "type": "zoom",
+        "eventData":{
+            "viewPos": {"x": -110,"y":-30,"z":93},
+            "viewRot": {"x": 0,"y": 1.5707,"z":0}
+            
+        }
+    }
+}
+
