@@ -9,7 +9,8 @@ import { Room } from './Room_v2';
 function View(){
     return(
         <>
-            <Canvas camera={{position: [0,0,0]}}>
+            <Canvas>
+                <perspectiveCamera position={[0,0,0]}/>
             <Suspense>   
                 <FlyControls/>
                 <Center>

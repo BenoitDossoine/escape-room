@@ -7,6 +7,9 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { gameLogicService } from '../services/GameLogicService'
+import { store } from '../store/store'
+import { useFrame } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -53,7 +56,28 @@ type GLTFResult = GLTF & {
 }
 
 export function Room(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('models/room_v2-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('models/room_v2-transformed.glb') as GLTFResult;
+  const vec = new THREE.Vector3();
+
+  const handleClick=(e:any)=>{
+    console.log(e);
+    const event = gameLogicService.handleClickEvent(e);
+    console.log(store.cameraPosition);
+  };
+
+  useFrame((state)=>{
+    if(store.zoomedIn){
+      state.camera.position.lerp(vec.set(store.cameraPosition.x,store.cameraPosition.y,store.cameraPosition.z),0.08);
+      state.camera.rotation.set(store.cameraRotation.x,store.cameraRotation.y,store.cameraRotation.z);
+      state.camera.updateProjectionMatrix();
+    } else if (!store.zoomedIn){
+      state.camera.position.lerp(vec.set(0,0,0),0.08);
+      state.camera.updateProjectionMatrix();
+    }
+    return null;
+    
+  });
+
   return (
     <group {...props} dispose={null}>
       <group name="Skateboard" position={[102.93, 140.83, -151.45]} rotation={[-0.01, 0.01, 0.14]}>
@@ -70,7 +94,7 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         <mesh name="board_04_high3_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_04_high3_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[-2.54, 0, 0]} rotation={[0, 0, Math.PI]} scale={-1} />
       </group>
       <mesh name="Poster" castShadow receiveShadow geometry={nodes.Poster.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="Mat" castShadow receiveShadow geometry={nodes.Mat.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="Mat" castShadow receiveShadow geometry={nodes.Mat.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} onClick={(e)=>handleClick(e)} />
       <mesh name="Bin" castShadow receiveShadow geometry={nodes.Bin.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Chair" castShadow receiveShadow geometry={nodes.Chair.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Keyboard" castShadow receiveShadow geometry={nodes.Keyboard.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
@@ -89,9 +113,9 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       <mesh name="Wall001" castShadow receiveShadow geometry={nodes.Wall001.geometry} material={materials['Material.001']} position={[201.77, 129.05, 75]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={[108, 100, 100.11]} />
       <mesh name="Wall002" castShadow receiveShadow geometry={nodes.Wall002.geometry} material={materials['Material.001']} position={[77.92, 130.95, -185.62]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Wall003" castShadow receiveShadow geometry={nodes.Wall003.geometry} material={materials['Material.001']} position={[0, 0, 10]} rotation={[Math.PI / 2, 0, -Math.PI]} scale={-100} />
-      <group name="Screen">
-        <mesh name="Screen_outer" castShadow receiveShadow geometry={nodes.Screen.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}/>
-        <mesh name="Screen_inner" castShadow receiveShadow geometry={nodes.Screen_inner.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}/>
+      <group name="Screen" onClick={(e)=>handleClick(e)}>
+        <mesh name="Screen" castShadow receiveShadow geometry={nodes.Screen.geometry} material={materials['Material.001']} position={[-130.85, 78.88, 72.53]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+        <mesh name="Screen_inner" castShadow receiveShadow geometry={nodes.Screen_inner.geometry} material={materials['Material.001']} position={[-131.06, 94.46, 97.27]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       </group>
     </group>
   )
