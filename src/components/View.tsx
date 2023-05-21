@@ -4,7 +4,7 @@ import { FlyControls } from '../controls/react-three-fiber/FlyControls';
 import DialogBox from './DialogBox';
 import { Suspense } from 'react';
 import { Center } from '@react-three/drei';
-import Model from './Model';
+import { Room } from './Room_v2';
 
 function View(){
     return(
@@ -13,7 +13,7 @@ function View(){
             <Suspense>   
                 <FlyControls/>
                 <Center>
-                    <Model/>
+                    <Room></Room>
                     <ambientLight intensity={ 0.4 } />
                 </Center>
             </Suspense>
