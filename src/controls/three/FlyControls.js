@@ -1,5 +1,6 @@
 import _defineProperty from '@babel/runtime/helpers/esm/defineProperty';
 import { EventDispatcher, Quaternion, Vector3 } from 'three';
+import { store } from '../../store/store';
 
 function contextmenu(event) {
   event.preventDefault();
@@ -53,7 +54,7 @@ class FlyControls extends EventDispatcher {
     _defineProperty(this, "rotationVector", new Vector3(0, 0, 0));
 
     _defineProperty(this, "keydown", event => {
-      if (event.altKey) {
+      if (event.altKey || store.zoomedIn) {
         return;
       }
 
