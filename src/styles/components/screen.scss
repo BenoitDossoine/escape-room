@@ -1,4 +1,20 @@
 .screen{
+
+    .success-screen{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p{
+            margin: 0;
+            font-size: 6px;
+            margin-top: 1px;
+        }
+        img{
+            width: 50px;
+        }
+    }
     .password-screen{
         .forms{
             padding-bottom: 10px;

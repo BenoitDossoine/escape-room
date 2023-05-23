@@ -9,13 +9,22 @@
     "Poster":{
         "type": "zoom",
         "eventData": {
-            "viewPos": [2,0,0]
+            "viewPos": {"x": -60,"y":35,"z":-120},
+            "viewRot": {"x": 0,"y":0, "z":0}
         }
     },
-    "Chest":{
+    "Filmposters_left":{
         "type": "zoom",
         "eventData": {
-            "viewPos": [2,0,0]
+            "viewPos": {"x":70,"y":35, "z":110},
+            "viewRot": {"x": 0,"y":3.14, "z":0}
+        }
+    },
+    "Filmposters_right":{
+        "type": "zoom",
+        "eventData": {
+            "viewPos": {"x":-50,"y":32, "z":100},
+            "viewRot": {"x": 0,"y":3.14, "z":0}
         }
     },
     "Mat":{
@@ -49,7 +58,8 @@
     "PC": {
         "type": "zoom",
         "eventData":{
-            "viewPos": [0,0,0]
+            "viewPos": {"x": -88,"y":-30,"z":92},
+            "viewRot": {"x": 0,"y": 1.5707,"z":0}
         }
     },
     "Plant": {
@@ -62,8 +72,15 @@
     "Screen":{
         "type": "zoom",
         "eventData":{
-            "viewPos": {"x": -90,"y":-30,"z":90},
+            "viewPos": {"x": -88,"y":-30,"z":92},
             "viewRot": {"x": 0,"y": 1.5707,"z":0}
+        }
+    },
+    "Shelf_group":{
+        "type": "zoom",
+        "eventData": {
+            "viewPos": {"x": 60, "y":30, "z":-100},
+            "viewRot": {"x":0,"y":0,"z":0}
         }
     }
 }

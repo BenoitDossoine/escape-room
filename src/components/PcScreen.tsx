@@ -39,16 +39,17 @@ function PcScreen (){
             distanceFactor={1}
         >
             {pcUnlocked?
-                <div>
-                    <p style={{color:"orange"}}>Good job!</p>
+                <div className="success-screen">
+                    <img src="./img/flux_capacitor.png" alt="" />
+                    <p style={{color:"orange"}}>timeTravel.exe</p>
                 </div>
                 :
                 <div className="password-screen">
                     <div className="forms">
-                        <Square/>
                         <Triangle/>
                         <Hexagon/>
                         <Circle/>
+                        <Square/>
                     </div>
                     <input 
                         type="number"
