@@ -82,6 +82,20 @@
             "viewPos": {"x": 60, "y":30, "z":-100},
             "viewRot": {"x":0,"y":0,"z":0}
         }
+    },
+    "Closet":{
+        "type": "zoom",
+        "eventData":{
+            "viewPos": {"x": -80,"y":0,"z":-92},
+            "viewRot": {"x": 0,"y": 1.5707,"z":0}
+        }
+    },
+    "Dinosaur":{
+        "type": "dialog",
+        "eventData":{
+            "dialogTitle": "Tyranosaurus 'Jef' Rex",
+            "dialogText": "A simple lego dinosaur."
+        }
     }
 }
 

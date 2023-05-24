@@ -167,7 +167,11 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       <mesh name="Bed" geometry={nodes.Bed.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Briefcases" geometry={nodes.Briefcases.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Briefcase" geometry={nodes.Briefcase.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="Closet" geometry={nodes.Closet.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh
+        name="Closet" geometry={nodes.Closet.geometry}material={materials['Material.001']}
+        rotation={[-Math.PI / 2, 0, 0]} scale={100}
+        onClick={(e)=>gameLogicService.handleClickEvent(e)}
+      />
       <mesh name="Scale" geometry={nodes.Scale.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Desk" geometry={nodes.Desk.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <group
@@ -185,8 +189,12 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         <mesh name="Filmposter004" geometry={nodes.Filmposter004.geometry} material={materials['lambert73.004']} position={[-66.3, 166.76, 191.2]} rotation={[0, 0.04, 1.6]} scale={[-94.28, -61.23, -110.73]} />
         <mesh name="Filmposter001" geometry={nodes.Filmposter001.geometry} material={materials['lambert73.001']} position={[-94.94, 113.75, 191.03]} rotation={[0, 0.04, 1.68]} scale={[-37.1, -24.1, -43.58]} />
       </group>
-      <mesh name="Dinosaur" geometry={nodes.Dinosaur.geometry} material={materials.material_0} position={[-150.86, 96.66, -63.43]} rotation={[-1.31, 0, -2.88]} scale={0.12} />
-      <mesh name="Map" geometry={nodes.Map.geometry} material={materials['Material.001']} position={[0, 0.09, -14.52]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh
+        name="Dinosaur" geometry={nodes.Dinosaur.geometry} material={materials.material_0}
+        position={[-150.86, 96.66, -63.43]} rotation={[-1.31, 0, -2.88]} scale={0.12} 
+        onClick={(e)=> store.zoomedIn?gameLogicService.handleClickEvent(e):null}  
+      />
+      <mesh name="Map" geometry={nodes.Map.geometry} material={materials['Material.001']} position={[0, 0.09, -14.52]} rotation={[-Math.PI / 2, 0, 0]} scale={100}/>
       <mesh name="Stylized_Radio" geometry={nodes.Stylized_Radio.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
       <mesh name="Armchair" geometry={nodes.Armchair.geometry} material={materials['Material.036']} position={[134.66, 35.39, 143.84]} rotation={[Math.PI, -0.74, Math.PI]} scale={[26.29, 3.91, 26.29]} />
       <mesh name="8Ball_0" geometry={nodes['8Ball_0'].geometry} material={materials['Material.037']} position={[-155.93, 134.36, -97.39]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={5.48} />
