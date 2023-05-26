@@ -58,20 +58,26 @@ function PatternGame(props:any){
             };
         };
         store.gameProgress.tabletUnlocked = true;
+        console.log('correct!')
         props.unlockTablet();
     }
 
     return(
-        <div className="patternGameContainer" hidden={disabled}>
-            {grid.map((row, rowIndex)=>
-                row.map((col, colIndex)=>
-                    <div
+        <>
+            {!disabled?
+                <div className="patternGameContainer" hidden={disabled}>
+                    {grid.map((row, rowIndex)=>
+                        row.map((col, colIndex)=>
+                        <div
                         className="cell" key={rowIndex+colIndex} data-col={colIndex} data-row={rowIndex} data-clicked={false}
                         onClick={(e)=> cellClick(e)}>
-                    </div>
-                )
-            )}
-        </div>
+                            </div>
+                        )
+                        )}
+                </div>:
+                null
+            }
+        </>
     )
 }
 

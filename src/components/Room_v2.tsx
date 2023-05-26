@@ -5,15 +5,17 @@ Adapted by Benoît Dossoine
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useGLTF, Html, MeshReflectorMaterial } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { gameLogicService } from '../services/GameLogicService'
 import { store } from '../store/store'
 import { useFrame } from '@react-three/fiber'
 import PcScreen from './PcScreen'
-import Sticker from './Sticker'
 import Tablet from './Tablet'
+import Hologram from './Hologram'
+import { useSpring, animated } from '@react-spring/three'
+import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -64,6 +66,13 @@ type GLTFResult = GLTF & {
     Sticker003: THREE.Mesh
     Sticker004: THREE.Mesh
     Tablet_inner: THREE.Mesh
+    Pausebutton: THREE.Mesh
+    Playbutton: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0_1: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0_2: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0_3: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0_4: THREE.Mesh
     Low_poly_living_room: THREE.Mesh
     Wall001: THREE.Mesh
     Wall002: THREE.Mesh
@@ -88,12 +97,21 @@ type GLTFResult = GLTF & {
     ['Material.036']: THREE.MeshStandardMaterial
     ['Material.037']: THREE.MeshStandardMaterial
     Sticker: THREE.MeshStandardMaterial
+    Knob_Shiny_Green: THREE.MeshStandardMaterial
+    Neon_Teal_Lights: THREE.MeshStandardMaterial
+    Base_Green_Color2: THREE.MeshStandardMaterial
+    Black_Color: THREE.MeshStandardMaterial
+    Emit_Light: THREE.MeshStandardMaterial
   }
 }
 
 export function Room(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('models/room_v2-transformed.glb') as GLTFResult;
   const vec = new THREE.Vector3();
+  const hologramBaseMesh:any = useRef();
+
+  const [active,setActive] = useState(false);
+  const {buttonPosition}:any = useSpring({buttonPosition: !active? [0,0,0]: [0.02,-0.02,0.02]})
 
   useFrame((state)=>{
     if(store.zoomedIn){
@@ -202,6 +220,8 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       />
       <mesh name="Map" geometry={nodes.Map.geometry} material={materials['Material.001']} position={[0, 0.09, -14.52]} rotation={[-Math.PI / 2, 0, 0]} scale={100}/>
       <mesh name="Stylized_Radio" geometry={nodes.Stylized_Radio.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
+      <mesh name="Pausebutton" geometry={nodes.Pausebutton.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
+      <mesh name="Playbutton" geometry={nodes.Playbutton.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
       <mesh name="Armchair" geometry={nodes.Armchair.geometry} material={materials['Material.036']} position={[134.66, 35.39, 143.84]} rotation={[Math.PI, -0.74, Math.PI]} scale={[26.29, 3.91, 26.29]} />
       <mesh name="8Ball_0" geometry={nodes['8Ball_0'].geometry} material={materials['Material.037']} position={[-155.93, 134.36, -97.39]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={5.48} />
       <group name="Environment">
@@ -240,8 +260,30 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         <Tablet/>
       </group>
 
+      <group
+        name="Hologram" position={[128, 54.92, 137.85]} scale={7.89}
+        onClick={(e)=>gameLogicService.handleClickEvent(e)}
+        >
+        <Hologram/>
+        <animated.mesh position={buttonPosition} name="HologramButton" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0.geometry} material={materials.Knob_Shiny_Green}
+          onClick={(e)=>(setActive(!active))}
+        >
+          <meshStandardMaterial color={'red'}/>
+        </animated.mesh>
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_1" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_1.geometry} material={materials.Neon_Teal_Lights}/>
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_2" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_2.geometry} material={materials.Base_Green_Color2}>
+        </mesh>
+        <mesh ref={hologramBaseMesh} name="Large_Control_Knob_Knob_Shiny_Green_0_3" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_3.geometry} material={materials.Black_Color}>
+          <meshStandardMaterial emissive={'#FD7E25'} opacity={1} emissiveIntensity={4} toneMapped={false}/>
+        </mesh>
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_4" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_4.geometry} material={materials.Emit_Light}>
+        </mesh>
+        <EffectComposer>
+              <SelectiveBloom selection={hologramBaseMesh} mipmapBlur luminanceThreshold={1} luminanceSmoothing={1} />
+        </EffectComposer>
       </group>
+    </group>
   )
 }
 
-useGLTF.preload('/room2-transformed.glb')
+useGLTF.preload('/output.glb')

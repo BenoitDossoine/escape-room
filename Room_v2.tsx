@@ -57,6 +57,13 @@ type GLTFResult = GLTF & {
     Sticker003: THREE.Mesh
     Sticker004: THREE.Mesh
     Tablet_inner: THREE.Mesh
+    Pausebutton: THREE.Mesh
+    Playbutton: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0_1: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0_2: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0_3: THREE.Mesh
+    Large_Control_Knob_Knob_Shiny_Green_0_4: THREE.Mesh
     Low_poly_living_room: THREE.Mesh
     Wall001: THREE.Mesh
     Wall002: THREE.Mesh
@@ -81,6 +88,11 @@ type GLTFResult = GLTF & {
     ['Material.036']: THREE.MeshStandardMaterial
     ['Material.037']: THREE.MeshStandardMaterial
     Sticker: THREE.MeshStandardMaterial
+    Knob_Shiny_Green: THREE.MeshStandardMaterial
+    Neon_Teal_Lights: THREE.MeshStandardMaterial
+    Base_Green_Color2: THREE.MeshStandardMaterial
+    Black_Color: THREE.MeshStandardMaterial
+    Emit_Light: THREE.MeshStandardMaterial
   }
 }
 
@@ -139,6 +151,15 @@ export function Model(props: JSX.IntrinsicElements['group']) {
       <mesh name="Sticker003" geometry={nodes.Sticker003.geometry} material={materials.Sticker} position={[44.05, 137.45, -141.65]} rotation={[1.55, -0.02, 0.32]} scale={1.53} />
       <mesh name="Sticker004" geometry={nodes.Sticker004.geometry} material={materials.Sticker} position={[116.15, 141.74, -161.17]} rotation={[1.57, -0.03, 0.99]} scale={1.53} />
       <mesh name="Tablet_inner" geometry={nodes.Tablet_inner.geometry} material={materials['Material.001']} position={[-107.96, 75.3, 36.65]} rotation={[-2.02, -0.49, -0.77]} scale={100} />
+      <mesh name="Pausebutton" geometry={nodes.Pausebutton.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
+      <mesh name="Playbutton" geometry={nodes.Playbutton.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
+      <group name="Hologram" position={[128, 54.92, 137.85]} scale={7.89}>
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0.geometry} material={materials.Knob_Shiny_Green} />
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_1" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_1.geometry} material={materials.Neon_Teal_Lights} />
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_2" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_2.geometry} material={materials.Base_Green_Color2} />
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_3" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_3.geometry} material={materials.Black_Color} />
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_4" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_4.geometry} material={materials.Emit_Light} />
+      </group>
       <mesh name="Low_poly_living_room" geometry={nodes.Low_poly_living_room.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Wall001" geometry={nodes.Wall001.geometry} material={materials['Material.001']} position={[201.77, 129.05, 75]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={[108, 100, 100.11]} />
       <mesh name="Wall002" geometry={nodes.Wall002.geometry} material={materials['Material.001']} position={[77.92, 130.95, -185.62]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />

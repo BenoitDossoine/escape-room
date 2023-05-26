@@ -103,6 +103,13 @@
             "viewPos":{"x": -75,"y":-40,"z":40},
             "viewRot":{"x":0,"y":0.9,"z":0}
         }
+    },
+    "Hologram":{
+        "type": "zoom",
+        "eventData":{
+            "viewPos":{"x": 130,"y":-65,"z":120},
+            "viewRot":{"x":0,"y":-2.3,"z":0}
+        }
     }
 }
 

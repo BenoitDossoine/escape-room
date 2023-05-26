@@ -15,7 +15,6 @@ function Tablet(){
 
 
     return(
-        // <Float floatIntensity={0.01} rotationIntensity={0.01} floatingRange={[-0.001,0.001]}>
         <>
             {!tabletUnlocked?
                 <Plane scale={10} args={[1.5,1.5]} rotation={[0, Math.PI/3.45, 0]} position={[-107.96, 85, 36.65]} visible={visible}>
@@ -35,7 +34,6 @@ function Tablet(){
                 <TabletAnswer/>
             }
         </>
-                // </Float>
     );
 }
 
