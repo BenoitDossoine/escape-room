@@ -13,6 +13,7 @@ import { store } from '../store/store'
 import { useFrame } from '@react-three/fiber'
 import PcScreen from './PcScreen'
 import Sticker from './Sticker'
+import Tablet from './Tablet'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -62,6 +63,7 @@ type GLTFResult = GLTF & {
     Sticker002: THREE.Mesh
     Sticker003: THREE.Mesh
     Sticker004: THREE.Mesh
+    Tablet_inner: THREE.Mesh
     Low_poly_living_room: THREE.Mesh
     Wall001: THREE.Mesh
     Wall002: THREE.Mesh
@@ -155,7 +157,11 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         position={[-4.63, 0, -2.57]} rotation={[-Math.PI / 2, 0, 0]} scale={100}
         onClick={(e)=>gameLogicService.handleClickEvent(e)}
       />
-      <mesh name="Bin" geometry={nodes.Bin.geometry} material={materials['Material.001']} position={[-55.45, -1.37, -174.66]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh
+        name="Bin" geometry={nodes.Bin.geometry} material={materials['Material.001']}
+        position={[-55.45, -1.37, -174.66]} rotation={[-Math.PI / 2, 0, 0]} scale={100}
+        onClick={(e)=>gameLogicService.handleClickEvent(e)}
+      />
       <mesh name="Chair" geometry={nodes.Chair.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Keyboard" geometry={nodes.Keyboard.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh
@@ -218,57 +224,23 @@ export function Room(props: JSX.IntrinsicElements['group']) {
           <PcScreen/>
         </mesh>
       </group>
-      <mesh name="Tablet" geometry={nodes.Tablet.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <group 
+        name="Tablet"
+        onClick={(e)=>gameLogicService.handleClickEvent(e)}  
+      >
+        <mesh
+          name="Tablet" geometry={nodes.Tablet.geometry} material={materials['Material.001']}
+          position={[-113.46, 73.58, 37.19]} rotation={[-Math.PI / 2, 0, -0.66]} scale={100}
+        />
+        <mesh
+          name="Tablet_inner" geometry={nodes.Tablet_inner.geometry} material={materials['Material.001']}
+          position={[-107.96, 75.3, 36.65]} rotation={[-2.02, -0.49, -0.77]} scale={100}
+        >
+        </mesh>
+        <Tablet/>
+      </group>
 
       </group>
-    // <group {...props} dispose={null}>
-    //   <group name="Skateboard" position={[102.93, 140.83, -151.45]} rotation={[-0.01, 0.01, 0.14]}>
-    //     <mesh name="board_01_high_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_01_high_rsMaterial1_0.geometry} material={materials.rsMaterial1} />
-    //     <mesh name="board_02_low1_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_02_low1_rsMaterial1_0.geometry} material={materials['Material.005']} position={[-2.54, 0, 0]} />
-    //     <mesh name="board_02_low2_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_02_low2_rsMaterial1_0.geometry} material={materials['Material.005']} position={[2.54, 0, 0]} rotation={[Math.PI, 0, 0]} scale={-1} />
-    //     <mesh name="board_03_high_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_03_high_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[-2.54, 0, 0]} />
-    //     <mesh name="board_03_high1_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_03_high1_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[2.54, 0, 0]} rotation={[Math.PI, 0, 0]} scale={-1} />
-    //     <mesh name="board_03_high2_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_03_high2_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[2.54, 0, 0]} rotation={[-Math.PI, 0, -Math.PI]} />
-    //     <mesh name="board_03_high3_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_03_high3_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[-2.54, 0, 0]} rotation={[0, 0, Math.PI]} scale={-1} />
-    //     <mesh name="board_04_high_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_04_high_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[-2.54, 0, 0]} />
-    //     <mesh name="board_04_high1_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_04_high1_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[2.54, 0, 0]} rotation={[Math.PI, 0, 0]} scale={-1} />
-    //     <mesh name="board_04_high2_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_04_high2_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[2.54, 0, 0]} rotation={[-Math.PI, 0, -Math.PI]} />
-    //     <mesh name="board_04_high3_rsMaterial1_0" castShadow receiveShadow geometry={nodes.board_04_high3_rsMaterial1_0.geometry} material={materials.rsMaterial1} position={[-2.54, 0, 0]} rotation={[0, 0, Math.PI]} scale={-1} />
-    //   </group>
-    //   <mesh name="Poster" castShadow receiveShadow geometry={nodes.Poster.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Mat" castShadow receiveShadow geometry={nodes.Mat.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} onClick={(e)=>gameLogicService.handleClickEvent(e)} />
-    //   <mesh name="Bin" castShadow receiveShadow geometry={nodes.Bin.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Chair" castShadow receiveShadow geometry={nodes.Chair.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Keyboard" castShadow receiveShadow geometry={nodes.Keyboard.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="PC" castShadow receiveShadow geometry={nodes.PC.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Mouse" castShadow receiveShadow geometry={nodes.Mouse.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Speakers" castShadow receiveShadow geometry={nodes.Speakers.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Shelf" castShadow receiveShadow geometry={nodes.Shelf.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Bed" castShadow receiveShadow geometry={nodes.Bed.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Briefcases" castShadow receiveShadow geometry={nodes.Briefcases.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Briefcase" castShadow receiveShadow geometry={nodes.Briefcase.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Closet" castShadow receiveShadow geometry={nodes.Closet.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Scale" castShadow receiveShadow geometry={nodes.Scale.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Desk" castShadow receiveShadow geometry={nodes.Desk.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Filmposter" castShadow receiveShadow geometry={nodes.Filmposter.geometry} material={materials.lambert73} position={[-9.42, 159.37, 193.84]} rotation={[0, 0.04, Math.PI / 2]} scale={[-49.53, -32.17, -58.04]} />
-    //   <mesh name="Low_poly_living_room" castShadow receiveShadow geometry={nodes.Low_poly_living_room.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Wall001" castShadow receiveShadow geometry={nodes.Wall001.geometry} material={materials['Material.001']} position={[201.77, 129.05, 75]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={[108, 100, 100.11]} />
-    //   <mesh name="Wall002" castShadow receiveShadow geometry={nodes.Wall002.geometry} material={materials['Material.001']} position={[77.92, 130.95, -185.62]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //   <mesh name="Wall003" castShadow receiveShadow geometry={nodes.Wall003.geometry} material={materials['Material.001']} position={[0, 0, 10]} rotation={[Math.PI / 2, 0, -Math.PI]} scale={-100} />
-    //   <group name="Screen" onClick={(e)=>{
-    //       gameLogicService.handleClickEvent(e);
-    //     }
-    //   }>
-    //     <mesh name="Screen" castShadow receiveShadow geometry={nodes.Screen.geometry} material={materials['Material.001']} position={[-130.85, 78.88, 72.53]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-    //     <mesh name="Screen_inner" castShadow receiveShadow geometry={nodes.Screen_inner.geometry} material={materials['Material.001']} position={[-131.06, 94.46, 97.27]} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
-    //       <MeshReflectorMaterial
-    //         mirror={1}
-    //         color={0x121212}
-    //       />
-    //       <PcScreen/>
-    //     </mesh>
-    //   </group>
-    // </group>
   )
 }
 

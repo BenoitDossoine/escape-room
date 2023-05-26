@@ -56,6 +56,7 @@ type GLTFResult = GLTF & {
     Sticker002: THREE.Mesh
     Sticker003: THREE.Mesh
     Sticker004: THREE.Mesh
+    Tablet_inner: THREE.Mesh
     Low_poly_living_room: THREE.Mesh
     Wall001: THREE.Mesh
     Wall002: THREE.Mesh
@@ -130,13 +131,14 @@ export function Model(props: JSX.IntrinsicElements['group']) {
       <mesh name="Stylized_Radio" geometry={nodes.Stylized_Radio.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
       <mesh name="Armchair" geometry={nodes.Armchair.geometry} material={materials['Material.036']} position={[134.66, 35.39, 143.84]} rotation={[Math.PI, -0.74, Math.PI]} scale={[26.29, 3.91, 26.29]} />
       <mesh name="8Ball_0" geometry={nodes['8Ball_0'].geometry} material={materials['Material.037']} position={[-155.93, 134.36, -97.39]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={5.48} />
-      <mesh name="Tablet" geometry={nodes.Tablet.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="Tablet" geometry={nodes.Tablet.geometry} material={materials['Material.001']} position={[-113.46, 73.58, 37.19]} rotation={[-Math.PI / 2, 0, -0.66]} scale={100} />
       <mesh name="Books" geometry={nodes.Books.geometry} material={materials['Material.001']} position={[17.71, 147.41, -161.99]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Sticker" geometry={nodes.Sticker.geometry} material={materials.Sticker} position={[21.93, 160.49, -154.7]} rotation={[Math.PI / 2, 0.2, 0]} scale={1.53} />
       <mesh name="Sticker001" geometry={nodes.Sticker001.geometry} material={materials.Sticker} position={[22.44, 138.16, -152.71]} rotation={[Math.PI / 2, 0.2, 0]} scale={1.53} />
       <mesh name="Sticker002" geometry={nodes.Sticker002.geometry} material={materials.Sticker} position={[13.61, 137.83, -152.71]} rotation={[1.56, 0.2, 0]} scale={1.53} />
       <mesh name="Sticker003" geometry={nodes.Sticker003.geometry} material={materials.Sticker} position={[44.05, 137.45, -141.65]} rotation={[1.55, -0.02, 0.32]} scale={1.53} />
       <mesh name="Sticker004" geometry={nodes.Sticker004.geometry} material={materials.Sticker} position={[116.15, 141.74, -161.17]} rotation={[1.57, -0.03, 0.99]} scale={1.53} />
+      <mesh name="Tablet_inner" geometry={nodes.Tablet_inner.geometry} material={materials['Material.001']} position={[-107.96, 75.3, 36.65]} rotation={[-2.02, -0.49, -0.77]} scale={100} />
       <mesh name="Low_poly_living_room" geometry={nodes.Low_poly_living_room.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Wall001" geometry={nodes.Wall001.geometry} material={materials['Material.001']} position={[201.77, 129.05, 75]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={[108, 100, 100.11]} />
       <mesh name="Wall002" geometry={nodes.Wall002.geometry} material={materials['Material.001']} position={[77.92, 130.95, -185.62]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />

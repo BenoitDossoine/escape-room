@@ -9,7 +9,6 @@ function PcScreen (){
     let [pcUnlocked,setPcUnlocked] = useState(store.gameProgress.pcUnlocked);
     let [disabled,setDisabled] = useState(!store.zoomedIn);
 
-
     const unsubscribe = subscribeKey(store, 'zoomedIn', (state)=>{setDisabled(!state)});
 
     const checkAnswer = (e:any) => {
