@@ -2,11 +2,13 @@
 @import './bases/body.scss';
 @import './bases/normalize.scss';
 
-
 @import './components/app.scss';
 @import './components/dialogbox.scss';
 @import './components/frame.scss';
 @import './components/frameButtons.scss';
+@import './components/hintSystem.scss';
 @import './components/screen.scss';
 @import './components//tablet.scss';
 @import './components/timer.scss';
+
+@import './animations/movingBackground.scss';

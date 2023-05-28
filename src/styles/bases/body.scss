@@ -7,5 +7,7 @@ body {
   background-repeat: repeat;
   background-position: -10px -10px;
 
+  animation: backgroundAnimation 10s infinite linear;
+
   font-family: $font-family;
 }

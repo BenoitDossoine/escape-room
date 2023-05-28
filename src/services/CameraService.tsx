@@ -13,6 +13,7 @@ class CameraService{
     public zoomOut = (keyEvent: KeyboardEvent) => {
         if(keyEvent.key === "Escape"){
             store.zoomedIn = false;
+            store.hintsOpen = false;
             document.removeEventListener("keydown", this.zoomOut);
         }
     }

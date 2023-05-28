@@ -9,7 +9,7 @@ function PcScreen (){
     let [pcUnlocked,setPcUnlocked] = useState(store.gameProgress.pcUnlocked);
     let [disabled,setDisabled] = useState(!store.zoomedIn);
 
-    const unsubscribe = subscribeKey(store, 'zoomedIn', (state)=>{setDisabled(!state)});
+    const unsubscribe = subscribeKey(store, 'zoomedIn', (state)=>{setDisabled(!state); unsubscribe();});
 
     const checkAnswer = (e:any) => {
         // Only check when all 4 numbers are in the input field

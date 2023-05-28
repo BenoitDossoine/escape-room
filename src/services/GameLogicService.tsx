@@ -17,10 +17,17 @@ class GameLogicService{
     public checkPcCode(code:number){
         if(code == 1985){
             store.gameProgress.pcUnlocked = true;
+            this.updateSolvedRiddles();
             return true;
         } else {
             return false;
         }
+    }
+
+    public updateSolvedRiddles(){
+        const prevSolvedRiddles = [...store.solvedRiddles];
+        prevSolvedRiddles.push(store.currentEvent.name as string);
+        store.solvedRiddles = prevSolvedRiddles;
     }
 }
 

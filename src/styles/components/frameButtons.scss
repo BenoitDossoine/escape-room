@@ -4,12 +4,13 @@
     height: 80px;
     background-color: black;
     border-radius: 50%;
-    border: $main-color 2px solid;
+    border: $main-color 4px solid;
     
     display: flex;
     justify-content: center;
     align-items: center;
 
+    z-index: 100;
     &.help-button{
         bottom: -44px;
         left: -44px;

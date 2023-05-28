@@ -1,0 +1,38 @@
+{
+    "Hologram":{
+        "name": "Hologram",
+        "hints": [
+            "What is that big red button for?"
+        ]
+    },
+    "Poster":{
+        "name": "Poster",
+        "hints": [
+            "That's a cool looking space invader! But how could it help you?"
+        ]
+    },
+    "Screen":{
+        "name": "Screen",
+        "hints": [
+            "Have you seen these shapes somewhere else?"
+        ]
+    },
+    "Shelf_group":{
+        "name": "Shelf_group",
+        "hints": [
+            "Hmm, some books look different..."
+        ]
+    },
+    "Closet":{
+        "name": "Closet",
+        "hints": [
+            "Wait... what is that shape?"
+        ]
+    },
+    "Tablet":{
+        "name": "Tablet",
+        "hints": [
+            "It looks like you will need a pattern here?"
+        ]
+    }
+}

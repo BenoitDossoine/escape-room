@@ -271,6 +271,7 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             {
               setActive(true);
               store.gameProgress.hologramActivated = true;
+              gameLogicService.updateSolvedRiddles();
             }
           }
         >
