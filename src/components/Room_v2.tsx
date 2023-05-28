@@ -16,6 +16,7 @@ import Tablet from './Tablet'
 import Hologram from './Hologram'
 import { useSpring, animated } from '@react-spring/three'
 import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
+import HologramContainer from './HologramContainer'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -60,11 +61,6 @@ type GLTFResult = GLTF & {
     ['8Ball_0']: THREE.Mesh
     Tablet: THREE.Mesh
     Books: THREE.Mesh
-    Sticker: THREE.Mesh
-    Sticker001: THREE.Mesh
-    Sticker002: THREE.Mesh
-    Sticker003: THREE.Mesh
-    Sticker004: THREE.Mesh
     Tablet_inner: THREE.Mesh
     Pausebutton: THREE.Mesh
     Playbutton: THREE.Mesh
@@ -73,6 +69,11 @@ type GLTFResult = GLTF & {
     Large_Control_Knob_Knob_Shiny_Green_0_2: THREE.Mesh
     Large_Control_Knob_Knob_Shiny_Green_0_3: THREE.Mesh
     Large_Control_Knob_Knob_Shiny_Green_0_4: THREE.Mesh
+    Sticker001: THREE.Mesh
+    Sticker002: THREE.Mesh
+    Sticker003: THREE.Mesh
+    Sticker: THREE.Mesh
+    Sticker005: THREE.Mesh
     Low_poly_living_room: THREE.Mesh
     Wall001: THREE.Mesh
     Wall002: THREE.Mesh
@@ -96,12 +97,12 @@ type GLTFResult = GLTF & {
     ['Material.035']: THREE.MeshStandardMaterial
     ['Material.036']: THREE.MeshStandardMaterial
     ['Material.037']: THREE.MeshStandardMaterial
-    Sticker: THREE.MeshStandardMaterial
     Knob_Shiny_Green: THREE.MeshStandardMaterial
     Neon_Teal_Lights: THREE.MeshStandardMaterial
     Base_Green_Color2: THREE.MeshStandardMaterial
     Black_Color: THREE.MeshStandardMaterial
     Emit_Light: THREE.MeshStandardMaterial
+    Sticker: THREE.MeshStandardMaterial
   }
 }
 
@@ -148,11 +149,11 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         </group>
         <mesh name="Books" geometry={nodes.Books.geometry} material={materials['Material.001']} position={[17.71, 147.41, -161.99]} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
         </mesh>
-        <mesh name="Sticker" geometry={nodes.Sticker.geometry} material={materials.Sticker} position={[21.93, 160.49, -154.7]} rotation={[Math.PI / 2, 0.2, 0]} scale={1.53} />
         <mesh name="Sticker001" geometry={nodes.Sticker001.geometry} material={materials.Sticker} position={[22.44, 138.16, -152.71]} rotation={[Math.PI / 2, 0.2, 0]} scale={1.53} />
-        <mesh name="Sticker002" geometry={nodes.Sticker002.geometry} material={materials.Sticker} position={[13.61, 137.83, -152.71]} rotation={[1.56, 0.2, 0]} scale={1.53} />
-        <mesh name="Sticker003" geometry={nodes.Sticker003.geometry} material={materials.Sticker} position={[44.05, 137.45, -141.65]} rotation={[1.55, -0.02, 0.32]} scale={1.53} />
-        <mesh name="Sticker004" geometry={nodes.Sticker004.geometry} material={materials.Sticker} position={[116.15, 141.74, -161.17]} rotation={[1.57, -0.03, 0.99]} scale={1.53} />
+        <mesh name="Sticker002" geometry={nodes.Sticker002.geometry} material={materials.Sticker} position={[21.93, 160.49, -154.7]} rotation={[Math.PI / 2, 0.2, 0]} scale={1.53} />
+        <mesh name="Sticker003" geometry={nodes.Sticker003.geometry} material={materials.Sticker} position={[13.61, 137.83, -152.71]} rotation={[Math.PI / 2, 0.2, 0]} scale={1.53} />
+        <mesh name="Sticker" geometry={nodes.Sticker.geometry} material={materials.Sticker} position={[44.05, 137.45, -141.65]} rotation={[1.55, -0.02, 0.32]} scale={1.53} />
+        <mesh name="Sticker005" geometry={nodes.Sticker005.geometry} material={materials.Sticker} position={[116.15, 141.74, -161.17]} rotation={[1.57, -0.03, 0.99]} scale={1.53} />
         <mesh
           name="Shelf" geometry={nodes.Shelf.geometry} material={materials['Material.001']}
           rotation={[-Math.PI / 2, 0, 0]} scale={100}
@@ -264,9 +265,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         name="Hologram" position={[128, 54.92, 137.85]} scale={7.89}
         onClick={(e)=>gameLogicService.handleClickEvent(e)}
         >
-        <Hologram/>
+        <HologramContainer active={store.gameProgress.hologramActivated}/>
         <animated.mesh position={buttonPosition} name="HologramButton" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0.geometry} material={materials.Knob_Shiny_Green}
-          onClick={(e)=>(setActive(!active))}
+          onClick={(e)=>
+            {
+              setActive(true);
+              store.gameProgress.hologramActivated = true;
+            }
+          }
         >
           <meshStandardMaterial color={'red'}/>
         </animated.mesh>
@@ -274,12 +280,15 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_2" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_2.geometry} material={materials.Base_Green_Color2}>
         </mesh>
         <mesh ref={hologramBaseMesh} name="Large_Control_Knob_Knob_Shiny_Green_0_3" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_3.geometry} material={materials.Black_Color}>
-          <meshStandardMaterial emissive={'#FD7E25'} opacity={1} emissiveIntensity={4} toneMapped={false}/>
+          {
+            active?
+            <meshStandardMaterial emissive={'#FD7E25'} opacity={1} emissiveIntensity={4} toneMapped={false}/>:
+            <meshStandardMaterial color={'#FD7E25'}/>
+          }
         </mesh>
-        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_4" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_4.geometry} material={materials.Emit_Light}>
-        </mesh>
+        <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_4" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_4.geometry} material={materials.Emit_Light}/>
         <EffectComposer>
-              <SelectiveBloom selection={hologramBaseMesh} mipmapBlur luminanceThreshold={1} luminanceSmoothing={1} />
+          <SelectiveBloom selection={hologramBaseMesh} mipmapBlur luminanceThreshold={1} luminanceSmoothing={1} />
         </EffectComposer>
       </group>
     </group>

@@ -19,7 +19,8 @@ type CameraRotation = {
 
 type GameProgress = {
     pcUnlocked: boolean,
-    tabletUnlocked: boolean
+    tabletUnlocked: boolean,
+    hologramActivated: boolean
 }
 
 
@@ -31,6 +32,7 @@ export const store = proxy<{zoomedIn: boolean, cameraPosition: CameraPosition, c
     },
     gameProgress: {
         pcUnlocked: false,
-        tabletUnlocked: false
+        tabletUnlocked: false,
+        hologramActivated: false
     }
 })

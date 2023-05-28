@@ -107,7 +107,7 @@
     "Hologram":{
         "type": "zoom",
         "eventData":{
-            "viewPos":{"x": 130,"y":-65,"z":120},
+            "viewPos":{"x": 130,"y":-59,"z":120},
             "viewRot":{"x":0,"y":-2.3,"z":0}
         }
     }

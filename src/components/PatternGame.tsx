@@ -58,7 +58,6 @@ function PatternGame(props:any){
             };
         };
         store.gameProgress.tabletUnlocked = true;
-        console.log('correct!')
         props.unlockTablet();
     }
 

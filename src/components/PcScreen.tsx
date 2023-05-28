@@ -46,9 +46,9 @@ function PcScreen (){
                 <div className="password-screen">
                     <div className="forms">
                         <Triangle/>
-                        <Hexagon/>
-                        <Circle/>
                         <Square/>
+                        <Circle/>
+                        <Hexagon/>
                     </div>
                     <input 
                         type="number"
