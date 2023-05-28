@@ -1,0 +1,12 @@
+.movingBackground{
+  animation: backgroundAnimation 10s infinite linear;
+}
+
+@keyframes backgroundAnimation {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 59.99px 59.99px;
+	}
+}

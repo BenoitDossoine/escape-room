@@ -1,6 +1,7 @@
 import {proxy} from 'valtio';
 
 type Event = {
+    name?: string,
     type?: string,
     eventData?: any
 }
@@ -24,7 +25,17 @@ type GameProgress = {
 }
 
 
-export const store = proxy<{zoomedIn: boolean, cameraPosition: CameraPosition, cameraRotation:CameraRotation, currentEvent:Event, gameProgress: GameProgress}>({
+export const store = proxy<{
+    zoomedIn: boolean,
+    cameraPosition: CameraPosition,
+    cameraRotation:CameraRotation,
+    currentEvent:Event,
+    gameProgress: GameProgress,
+    solvedRiddles: string[],
+    currentHint: string,
+    hintsOpen: boolean
+}>
+({
     zoomedIn: false,
     cameraPosition: {x:0,y:0,z:0},
     cameraRotation: {x:0,y:0,z:0},
@@ -34,5 +45,8 @@ export const store = proxy<{zoomedIn: boolean, cameraPosition: CameraPosition, c
         pcUnlocked: false,
         tabletUnlocked: false,
         hologramActivated: false
-    }
+    },
+    solvedRiddles: [],
+    currentHint: '',
+    hintsOpen: false,
 })
