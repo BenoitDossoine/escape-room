@@ -6,10 +6,14 @@ class HintService{
         if(store.zoomedIn){
             const event:string = store.currentEvent.name as string;
 
-            if(!store.solvedRiddles.includes(event) && (hints as any)[event]){
+            
+            if(!store.solvedRiddles.includes(event) && (hints as any)[event])
+            {
                 const eventHints = (hints as any)[event].hints;
                 store.currentHint = eventHints[0];
-            } else {
+            }         
+            else
+            {
                 store.currentHint = "I can't help you for the moment."
             }
         } else {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { store } from "../store/store";
 import { subscribeKey } from "valtio/utils";
+import { gameLogicService } from "../services/GameLogicService";
 
 function PatternGame(props:any){
     const [grid, setGrid] = useState<Array<boolean[]>>([]);
@@ -58,6 +59,7 @@ function PatternGame(props:any){
             };
         };
         store.gameProgress.tabletUnlocked = true;
+        gameLogicService.updateSolvedRiddles();
         props.unlockTablet();
     }
 

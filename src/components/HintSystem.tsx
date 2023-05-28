@@ -6,7 +6,6 @@ function HintSystem(){
     const [currentHint,setCurrentHint] = useState('')
     const unsubscribe = subscribeKey(store, 'currentHint', (state)=>{
         setCurrentHint(state);
-        console.log(state);
         unsubscribe();
     });
 
