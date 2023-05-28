@@ -1,0 +1,80 @@
+.screen{
+
+    .success-screen{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p{
+            margin: 0;
+            font-size: 6px;
+            margin-top: 1px;
+        }
+        img{
+            width: 50px;
+        }
+    }
+    .password-screen{
+        .forms{
+            padding-bottom: 10px;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            svg{
+                color: $main-color;
+                
+                &:not(:last-child){
+                    margin-right: 5px;
+                }
+            }
+
+        }
+        .screenInput{
+
+            $char-w: 1ch;
+            $gap: 2*$char-w;
+            $n-char: 4;
+            $in-w: $n-char*($char-w + $gap);
+
+            outline: 0;
+            caret-color: transparent;
+            border: none;
+            outline: none;
+            margin-left: $gap;
+
+            color: $main-color;
+            font-family: monospace;
+            font-size: 2ch;
+            display: block;
+            width: $in-w;
+            border: none;
+            padding: 0;
+            background: repeating-linear-gradient(90deg, 
+                        $main-color 0, $main-color $char-w, 
+                        transparent 0, transparent $char-w + $gap) 
+                        0 100%/ #{$in-w - $gap} 1px no-repeat;
+            letter-spacing: $gap;
+
+            cursor:default;
+
+            &::-webkit-inner-spin-button, 
+            &::-webkit-outer-spin-button { 
+                -webkit-appearance: none; 
+                margin: 0; 
+            }
+            &:focus{
+                outline: none;
+            }
+
+            &:placeholder-shown{
+                outline: 0;
+                caret-color: transparent;
+                border: none;
+            }
+
+
+        }
+    }
+    }

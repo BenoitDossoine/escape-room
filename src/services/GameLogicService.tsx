@@ -10,9 +10,16 @@ class GameLogicService{
         store.currentEvent = event;
 
         if(event.type === "zoom" && !store.zoomedIn){
-            store.zoomedIn = true;
-            store.cameraPosition = {x: event.eventData.viewPos.x,y: event.eventData.viewPos.y,z: event.eventData.viewPos.z};
-            store.cameraRotation = {x: event.eventData.viewRot.x,y: event.eventData.viewRot.y,z: event.eventData.viewRot.z};
+            cameraService.zoomIn(event);
+        }
+    }
+
+    public checkPcCode(code:number){
+        if(code == 1985){
+            store.gameProgress.pcUnlocked = true;
+            return true;
+        } else {
+            return false;
         }
     }
 }
