@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Frame from "./Frame";
 import Intro from "./Intro";
+import { immersionService } from "../services/ImmersionService";
 
 function App() {
   const [started,setStarted] = useState(false);
@@ -10,16 +11,13 @@ function App() {
         src="./music/background.mp3"
         id="backgroundMusic"
       ></audio>
-      {
-        !started?
+      {!started?
         <Intro 
             startGame={()=>{setStarted(true);
-            let audio = document.getElementById("backgroundMusic") as HTMLAudioElement;
-            audio.play();
-            audio.volume = 0.5;
-            // document.getElementsByTagName("body")[0]?.requestFullscreen();
-          }}
-          />:
+              immersionService.playBackgroundAudio();
+              immersionService.setFullScreen();
+            }}
+        />:
         <Frame/>
       }      
     </div>
