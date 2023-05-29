@@ -36,6 +36,7 @@ function PcScreen (){
             rotation-z = {Math.PI/2}
             rotation-y = {Math.PI/2.23}
             distanceFactor={1}
+            zIndexRange={[1,2]}
         >
             {pcUnlocked?
                 <div className="success-screen">
