@@ -17,6 +17,7 @@ import Hologram from './Hologram'
 import { useSpring, animated } from '@react-spring/three'
 import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
 import HologramContainer from './HologramContainer'
+import RadioAudio from './RadioAudio'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -113,6 +114,10 @@ export function Room(props: JSX.IntrinsicElements['group']) {
 
   const [active,setActive] = useState(false);
   const {buttonPosition}:any = useSpring({buttonPosition: !active? [0,0,0]: [0.02,-0.02,0.02]})
+  
+  const [play,setPlay] = useState(false);
+  const {playButtonPosition}:any = useSpring({playButtonPosition: play?[162.24,84,-0.33]:[162.24, 85.14, -0.33]});
+  const {pauseButtonPosition}:any = useSpring({pauseButtonPosition: play?[162.24,86.2,-0.33]:[162.24, 85.14, -0.33]});
 
   useFrame((state)=>{
     if(store.zoomedIn){
@@ -134,7 +139,9 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       >
         <group 
           name="Skateboard"
-          position={[104.45, 139.62, -156.85]} rotation={[-0.01, 0.01, 0.15]}>
+          position={[104.45, 139.62, -156.85]} rotation={[-0.01, 0.01, 0.15]}
+          onClick={(e)=>gameLogicService.handleClickEvent(e)}
+        >
           <mesh name="board_01_high_rsMaterial1_0" geometry={nodes.board_01_high_rsMaterial1_0.geometry} material={materials.rsMaterial1} />
           <mesh name="board_02_low1_rsMaterial1_0" geometry={nodes.board_02_low1_rsMaterial1_0.geometry} material={materials['Material.005']} position={[-2.54, 0, 0]} />
           <mesh name="board_02_low2_rsMaterial1_0" geometry={nodes.board_02_low2_rsMaterial1_0.geometry} material={materials['Material.005']} position={[2.54, 0, 0]} rotation={[Math.PI, 0, 0]} scale={-1} />
@@ -159,7 +166,11 @@ export function Room(props: JSX.IntrinsicElements['group']) {
           rotation={[-Math.PI / 2, 0, 0]} scale={100}
         />
       </group>
-      <group name="Nightstand" position={[178.31, 13.38, 0]} rotation={[-Math.PI / 2, 0, 1.57]} scale={63.55}>
+      <group  
+        name="Nightstand" 
+        position={[178.31, 13.38, 0]} rotation={[-Math.PI / 2, 0, 1.57]} scale={63.55}
+        onClick={(e)=>gameLogicService.handleClickEvent(e)}
+      >
         <mesh name="Night_stand_metallic_0" geometry={nodes.Night_stand_metallic_0.geometry} material={materials.metallic} position={[0, 0.18, 0.01]} scale={1.61} />
         <mesh name="Night_stand_wood_0" geometry={nodes.Night_stand_wood_0.geometry} material={materials.wood} position={[0, 0.18, 0.01]} scale={1.61} />
       </group>
@@ -190,8 +201,6 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       <mesh name="Mouse" geometry={nodes.Mouse.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Speakers" geometry={nodes.Speakers.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Bed" geometry={nodes.Bed.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="Briefcases" geometry={nodes.Briefcases.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="Briefcase" geometry={nodes.Briefcase.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh
         name="Closet" geometry={nodes.Closet.geometry}material={materials['Material.001']}
         rotation={[-Math.PI / 2, 0, 0]} scale={100}
@@ -220,9 +229,29 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         onClick={(e)=> store.zoomedIn?gameLogicService.handleClickEvent(e):null}  
       />
       <mesh name="Map" geometry={nodes.Map.geometry} material={materials['Material.001']} position={[0, 0.09, -14.52]} rotation={[-Math.PI / 2, 0, 0]} scale={100}/>
-      <mesh name="Stylized_Radio" geometry={nodes.Stylized_Radio.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
-      <mesh name="Pausebutton" geometry={nodes.Pausebutton.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
-      <mesh name="Playbutton" geometry={nodes.Playbutton.geometry} material={materials['Material.035']} position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28} />
+      <group position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28}>
+        <mesh 
+          name="Radio" geometry={nodes.Stylized_Radio.geometry} material={materials['Material.035']}
+          onClick={(e)=>gameLogicService.handleClickEvent(e)}
+        />
+        <RadioAudio/>
+      </group>
+      <animated.mesh
+        name="Pausebutton" geometry={nodes.Pausebutton.geometry} material={materials['Material.035']}
+        position={pauseButtonPosition} rotation={[-1.55, -0.79, -3.12]} scale={1.28}
+        onClick={(e)=>{
+          setPlay(false);
+          store.radioPlaying = false;
+        }}
+      />
+      <animated.mesh
+        name="Playbutton" geometry={nodes.Playbutton.geometry} material={materials['Material.035']}
+        position={playButtonPosition} rotation={[-1.55, -0.79, -3.12]} scale={1.28}
+        onClick={(e)=>{
+          setPlay(true);
+          store.radioPlaying = true;
+        }}
+      />
       <mesh name="Armchair" geometry={nodes.Armchair.geometry} material={materials['Material.036']} position={[134.66, 35.39, 143.84]} rotation={[Math.PI, -0.74, Math.PI]} scale={[26.29, 3.91, 26.29]} />
       <mesh name="8Ball_0" geometry={nodes['8Ball_0'].geometry} material={materials['Material.037']} position={[-155.93, 134.36, -97.39]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={5.48} />
       <group name="Environment">
@@ -271,7 +300,7 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             {
               setActive(true);
               store.gameProgress.hologramActivated = true;
-              gameLogicService.updateSolvedRiddles();
+              gameLogicService.updateSolvedRiddles(["Hologram"]);
             }
           }
         >
