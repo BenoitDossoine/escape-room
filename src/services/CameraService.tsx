@@ -11,6 +11,7 @@ class CameraService{
     public zoomOut = () => {
         store.zoomedIn = false;
         store.hintsOpen = false;
+        store.currentEvent = {};
     }
 }
 
