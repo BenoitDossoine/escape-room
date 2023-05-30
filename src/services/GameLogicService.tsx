@@ -17,16 +17,18 @@ class GameLogicService{
     public checkPcCode(code:number){
         if(code == 1985){
             store.gameProgress.pcUnlocked = true;
-            this.updateSolvedRiddles();
+            this.updateSolvedRiddles(["Screen"]);
             return true;
         } else {
             return false;
         }
     }
 
-    public updateSolvedRiddles(){
+    public updateSolvedRiddles(riddles:string[]){
         const prevSolvedRiddles = [...store.solvedRiddles];
-        prevSolvedRiddles.push(store.currentEvent.name as string);
+        for(let riddle of riddles){
+            prevSolvedRiddles.push(riddle);
+        }
         store.solvedRiddles = prevSolvedRiddles;
     }
 }

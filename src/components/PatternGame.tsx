@@ -59,7 +59,7 @@ function PatternGame(props:any){
             };
         };
         store.gameProgress.tabletUnlocked = true;
-        gameLogicService.updateSolvedRiddles();
+        gameLogicService.updateSolvedRiddles(["Tablet", "Poster"]);
         props.unlockTablet();
     }
 
