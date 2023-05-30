@@ -41,6 +41,8 @@
             background-repeat: repeat;
             background-position: -10px -10px;
             animation: backgroundAnimation 10s infinite linear;
+
+            pointer-events: none;
         }
         .dialogTitle{
             font-weight: 900;
