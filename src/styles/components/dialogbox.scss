@@ -1,44 +1,69 @@
-.dialogBox{
+.dialogBoxContainer{
     z-index: 1000;
     position: absolute;
-    width: 30%;
+    width: 25%;
     aspect-ratio: 16/9;
 
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+     
+    .dialogBox{
+        position: relative;
+        box-sizing: border-box;
+        width: calc(100% + 20px);
+        height: calc(100% + 20px);
 
-    padding: 1em;
+        box-sizing: border-box;
+        
+        background-color: $background-color;
+        box-shadow: 0 0 5px 5px $background-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
 
-    border: $main-color 4px solid;
-    background-color: #000000;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    font-family: $font-family;
-    color: $main-color;
-    
-    .dialogTitle{
-        font-weight: 400;
-        font-size: 40px;
-        margin: 0.2em 0;
-    }
-
-    .dialogContent{
-        font-size: 20px;
-    }
-
-    .dialogProceedBtn{
-        margin: 0;
-        padding: 0.5em 1em;
-        background-color: $main-color;
-        justify-self: flex-end;
         font-family: $font-family;
-        font-weight: 500;
-        align-self: flex-end;
-        text-transform: uppercase;
+        color: $main-color;
+        
+        &::after{
+            content:"";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+
+            background-size: 60px 60px;
+            background-image: linear-gradient(to right, rgba(253, 127, 37, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(253, 126, 37,0.3) 1px, transparent 1px);
+            background-repeat: repeat;
+            background-position: -10px -10px;
+            animation: backgroundAnimation 10s infinite linear;
+        }
+        .dialogTitle{
+            font-weight: 900;
+            font-size: 40px;
+            margin: 0.2em 0;
+        }
+
+        .dialogContent{
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .dialogProceedBtn{
+            margin: 0;
+            padding: 0.5em 1em;
+            // background-color: $main-color;
+            color: $main-color;
+            justify-self: flex-end;
+            font-family: $font-family;
+            font-weight: 500;
+            font-size: 15px;
+            align-self: flex-end;
+            text-transform: uppercase;
+        }
     }
 }
