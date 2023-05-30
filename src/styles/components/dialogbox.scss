@@ -11,8 +11,8 @@
     .dialogBox{
         position: relative;
         box-sizing: border-box;
-        width: calc(100% + 20px);
-        height: calc(100% + 20px);
+        width: 100%;
+        height: 100%;
 
         box-sizing: border-box;
         
@@ -47,7 +47,7 @@
         .dialogTitle{
             font-weight: 900;
             font-size: 40px;
-            margin: 0.2em 0;
+            margin: 0.2em 0.2em;
         }
 
         .dialogContent{
