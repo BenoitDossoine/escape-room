@@ -10,11 +10,13 @@ function DialogBox({showDialog}:any){
                 ?(
                     <div className="dialogBoxContainer">
                         <div className="dialogBox movingBackground">
-                            <h2 className="dialogTitle">{event.eventData.dialogTitle}</h2>
                             <div className="dialogContent">
-                            <p>{event.eventData.dialogText}</p>
+                                <h2 className="dialogTitle">{event.eventData.dialogTitle}</h2>
+                                <div className="dialogContent">
+                                <p>{event.eventData.dialogText}</p>
+                                </div>
+                                <button className="dialogProceedBtn" onClick={()=>store.currentEvent={}}> &gt; Proceed</button>
                             </div>
-                            <button className="dialogProceedBtn" onClick={()=>store.currentEvent={}}> &gt; Proceed</button>
                         </div>
                     </div>
                 )

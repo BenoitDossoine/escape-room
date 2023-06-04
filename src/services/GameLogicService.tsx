@@ -3,9 +3,14 @@ import { store } from '../store/store';
 import { cameraService } from "./CameraService";
 
 class GameLogicService{
-    public handleClickEvent(e:any){
+    public handleClickEvent(e:any, zoomOverride:string | null = null){
         e.stopPropagation();
-        const tag = `${e.eventObject.name}`;
+        let tag  = '';
+        if(zoomOverride){
+            tag = zoomOverride;
+        } else {
+            tag = `${e.eventObject.name}`;
+        }
         const event = (gameAssets as any)[tag];
         store.currentEvent = event;
 

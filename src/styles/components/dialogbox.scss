@@ -18,10 +18,7 @@
         
         background-color: $background-color;
         box-shadow: 0 0 5px 5px $background-color;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+        
 
         font-family: $font-family;
         color: $main-color;
@@ -44,28 +41,42 @@
 
             pointer-events: none;
         }
-        .dialogTitle{
-            font-weight: 900;
-            font-size: 40px;
-            margin: 0.2em 0.2em;
-        }
 
         .dialogContent{
-            font-size: 20px;
-            font-weight: 600;
-        }
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
 
-        .dialogProceedBtn{
-            margin: 0;
-            padding: 0.5em 1em;
-            // background-color: $main-color;
-            color: $main-color;
-            justify-self: flex-end;
-            font-family: $font-family;
-            font-weight: 500;
-            font-size: 15px;
-            align-self: flex-end;
-            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            padding: 1em;
+
+            .dialogTitle{
+                font-weight: 900;
+                font-size: 30px;
+                margin: 0.2em 0.2em;
+            }
+    
+            .dialogContent{
+                font-size: 20px;
+                font-weight: 600;
+            }
+    
+            .dialogProceedBtn{
+                margin: 0;
+                padding: 0.5em 1em;
+                background-color: $main-color;
+                color: $background-color;
+                justify-self: flex-end;
+                font-family: $font-family;
+                font-weight: 500;
+                font-size: 15px;
+                align-self: flex-end;
+                text-transform: uppercase;
+            }
         }
     }
 }

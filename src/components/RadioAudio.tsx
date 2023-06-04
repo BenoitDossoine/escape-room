@@ -9,7 +9,7 @@ function RadioAudio(){
     const audio = useRef() as any;
     const {camera} = useThree();
     const [listener] = useState(()=>new THREE.AudioListener());
-    const buffer = useLoader(THREE.AudioLoader,'./music/background.mp3');
+    const buffer = useLoader(THREE.AudioLoader,'./music/radio.mp3');
 
     const state = useSnapshot(store);
     const isPlaying = state.radioPlaying;

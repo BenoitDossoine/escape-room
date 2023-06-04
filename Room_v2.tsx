@@ -64,6 +64,7 @@ type GLTFResult = GLTF & {
     Sticker003: THREE.Mesh
     Sticker: THREE.Mesh
     Sticker005: THREE.Mesh
+    Plant: THREE.Mesh
     Low_poly_living_room: THREE.Mesh
     Wall001: THREE.Mesh
     Wall002: THREE.Mesh
@@ -160,6 +161,7 @@ export function Model(props: JSX.IntrinsicElements['group']) {
       <mesh name="Sticker003" geometry={nodes.Sticker003.geometry} material={materials.Sticker} position={[13.61, 137.83, -152.71]} rotation={[Math.PI / 2, 0.2, 0]} scale={1.53} />
       <mesh name="Sticker" geometry={nodes.Sticker.geometry} material={materials.Sticker} position={[44.05, 137.45, -141.65]} rotation={[1.55, -0.02, 0.32]} scale={1.53} />
       <mesh name="Sticker005" geometry={nodes.Sticker005.geometry} material={materials.Sticker} position={[116.15, 141.74, -161.17]} rotation={[1.57, -0.03, 0.99]} scale={1.53} />
+      <mesh name="Plant" geometry={nodes.Plant.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Low_poly_living_room" geometry={nodes.Low_poly_living_room.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Wall001" geometry={nodes.Wall001.geometry} material={materials['Material.001']} position={[201.77, 129.05, 75]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={[108, 100, 100.11]} />
       <mesh name="Wall002" geometry={nodes.Wall002.geometry} material={materials['Material.001']} position={[77.92, 130.95, -185.62]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />

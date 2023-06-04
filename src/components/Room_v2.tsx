@@ -6,14 +6,13 @@ Adapted by Benoît Dossoine
 
 import * as THREE from 'three'
 import React, { useRef, useState } from 'react'
-import { useGLTF, Html, MeshReflectorMaterial } from '@react-three/drei'
+import { useGLTF, MeshReflectorMaterial } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { gameLogicService } from '../services/GameLogicService'
 import { store } from '../store/store'
 import { useFrame } from '@react-three/fiber'
 import PcScreen from './PcScreen'
 import Tablet from './Tablet'
-import Hologram from './Hologram'
 import { useSpring, animated } from '@react-spring/three'
 import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
 import HologramContainer from './HologramContainer'
@@ -75,6 +74,7 @@ type GLTFResult = GLTF & {
     Sticker003: THREE.Mesh
     Sticker: THREE.Mesh
     Sticker005: THREE.Mesh
+    Plant: THREE.Mesh
     Low_poly_living_room: THREE.Mesh
     Wall001: THREE.Mesh
     Wall002: THREE.Mesh
@@ -140,7 +140,9 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         <group 
           name="Skateboard"
           position={[104.45, 139.62, -156.85]} rotation={[-0.01, 0.01, 0.15]}
-          onClick={(e)=>gameLogicService.handleClickEvent(e)}
+          onClick={(e)=>{
+            store.zoomedIn?gameLogicService.handleClickEvent(e):gameLogicService.handleClickEvent(e,"Shelf_group")
+          }}
         >
           <mesh name="board_01_high_rsMaterial1_0" geometry={nodes.board_01_high_rsMaterial1_0.geometry} material={materials.rsMaterial1} />
           <mesh name="board_02_low1_rsMaterial1_0" geometry={nodes.board_02_low1_rsMaterial1_0.geometry} material={materials['Material.005']} position={[-2.54, 0, 0]} />
@@ -200,13 +202,21 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       />
       <mesh name="Mouse" geometry={nodes.Mouse.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Speakers" geometry={nodes.Speakers.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="Bed" geometry={nodes.Bed.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh 
+        name="Bed" geometry={nodes.Bed.geometry} material={materials['Material.001']}
+        rotation={[-Math.PI / 2, 0, 0]} scale={100}
+        onClick={(e) => {gameLogicService.handleClickEvent(e)}}  
+      />
       <mesh
         name="Closet" geometry={nodes.Closet.geometry}material={materials['Material.001']}
         rotation={[-Math.PI / 2, 0, 0]} scale={100}
         onClick={(e)=>gameLogicService.handleClickEvent(e)}
       />
-      <mesh name="Scale" geometry={nodes.Scale.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh 
+        name="Scale" geometry={nodes.Scale.geometry} material={materials['Material.001']}
+        rotation={[-Math.PI / 2, 0, 0]} scale={100}
+        onClick={(e)=>gameLogicService.handleClickEvent(e)}
+      />
       <mesh name="Desk" geometry={nodes.Desk.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <group
         name="Filmposters_left"
@@ -226,7 +236,7 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       <mesh
         name="Dinosaur" geometry={nodes.Dinosaur.geometry} material={materials.material_0}
         position={[-150.86, 96.66, -63.43]} rotation={[-1.31, 0, -2.88]} scale={0.12} 
-        onClick={(e)=> store.zoomedIn?gameLogicService.handleClickEvent(e):null}  
+        onClick={(e)=> store.zoomedIn?gameLogicService.handleClickEvent(e):gameLogicService.handleClickEvent(e,"Closet")}  
       />
       <mesh name="Map" geometry={nodes.Map.geometry} material={materials['Material.001']} position={[0, 0.09, -14.52]} rotation={[-Math.PI / 2, 0, 0]} scale={100}/>
       <group position={[162.24, 85.14, -0.33]} rotation={[-1.55, -0.79, -3.12]} scale={1.28}>
@@ -321,6 +331,13 @@ export function Room(props: JSX.IntrinsicElements['group']) {
           <SelectiveBloom selection={hologramBaseMesh} mipmapBlur luminanceThreshold={1} luminanceSmoothing={1} />
         </EffectComposer>
       </group>
+      <mesh
+        name="Plant" geometry={nodes.Plant.geometry} material={materials['Material.001']}
+        rotation={[-Math.PI / 2, 0, 0]} scale={100}
+        onClick={(e)=>{
+          store.zoomedIn?gameLogicService.handleClickEvent(e):gameLogicService.handleClickEvent(e,"Closet");
+        }}
+      />
     </group>
   )
 }

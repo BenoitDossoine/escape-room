@@ -34,7 +34,7 @@
         "type": "dialog",
         "eventData": {
             "dialogTitle": "Bin",
-            "dialogText": "The trash can is (not) empty."
+            "dialogText": "It's empty."
         }
     },
     "Screen":{
@@ -107,6 +107,30 @@
         "eventData":{
             "viewPos":{"x":150,"y":-25,"z":0},
             "viewRot":{"x":0,"y":-1.57,"z":0}
+        }
+    },
+    "Plant": {
+        "name": "Plant",
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Plant",
+            "dialogText": "The only plant I could keep alive..."
+        }
+    },
+    "Bed": {
+        "name": "Bed",
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Bed",
+            "dialogText": "I don't have time for a nap!"
+        }
+    },
+    "Scale": {
+        "name": "Scale",
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Scale",
+            "dialogText": "Let's not stand on that..."
         }
     }
 }
