@@ -5,6 +5,8 @@ import DialogBox from './DialogBox';
 import { Suspense, useRef } from 'react';
 import { Center } from '@react-three/drei';
 import { Room } from './Room_v2';
+import { store } from '../store/store';
+import ZoomOutButton from './ZoomOutButton';
 
 function View(){
     const directionalLight = useRef() as any;
@@ -22,6 +24,7 @@ function View(){
                 </Suspense>
             </Canvas>
             <DialogBox/>
+            <ZoomOutButton/>
         </>
     )
 }

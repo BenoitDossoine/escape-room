@@ -7,13 +7,19 @@ function DialogBox({showDialog}:any){
     return(
         <>
             {snap.currentEvent.type === "dialog"
-                ?(<div className="dialogBox">
-                    <h2 className="dialogTitle">{event.eventData.dialogTitle}</h2>    
-                    <div className="dialogContent">
-                    <p>{event.eventData.dialogText}</p>
+                ?(
+                    <div className="dialogBoxContainer">
+                        <div className="dialogBox movingBackground">
+                            <div className="dialogContent">
+                                <h2 className="dialogTitle">{event.eventData.dialogTitle}</h2>
+                                <div className="dialogContent">
+                                <p>{event.eventData.dialogText}</p>
+                                </div>
+                                <button className="dialogProceedBtn" onClick={()=>store.currentEvent={}}> &gt; Proceed</button>
+                            </div>
+                        </div>
                     </div>
-                    <button className="dialogProceedBtn" onClick={()=>store.currentEvent={}}>Proceed</button>
-                </div>)
+                )
                 :null
             }
         </>

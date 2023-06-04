@@ -13,9 +13,10 @@ function App() {
       ></audio>
       {!started?
         <Intro 
-            startGame={()=>{setStarted(true);
+            startGame={()=>{
+              setStarted(true);
               immersionService.playBackgroundAudio();
-              immersionService.setFullScreen();
+              // immersionService.setFullScreen();
             }}
         />:
         <Frame/>

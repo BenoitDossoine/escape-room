@@ -3,9 +3,14 @@ import { store } from '../store/store';
 import { cameraService } from "./CameraService";
 
 class GameLogicService{
-    public handleClickEvent(e:any){
+    public handleClickEvent(e:any, zoomOverride:string | null = null){
         e.stopPropagation();
-        const tag = `${e.eventObject.name}`;
+        let tag  = '';
+        if(zoomOverride){
+            tag = zoomOverride;
+        } else {
+            tag = `${e.eventObject.name}`;
+        }
         const event = (gameAssets as any)[tag];
         store.currentEvent = event;
 
@@ -17,16 +22,18 @@ class GameLogicService{
     public checkPcCode(code:number){
         if(code == 1985){
             store.gameProgress.pcUnlocked = true;
-            this.updateSolvedRiddles();
+            this.updateSolvedRiddles(["Screen"]);
             return true;
         } else {
             return false;
         }
     }
 
-    public updateSolvedRiddles(){
+    public updateSolvedRiddles(riddles:string[]){
         const prevSolvedRiddles = [...store.solvedRiddles];
-        prevSolvedRiddles.push(store.currentEvent.name as string);
+        for(let riddle of riddles){
+            prevSolvedRiddles.push(riddle);
+        }
         store.solvedRiddles = prevSolvedRiddles;
     }
 }

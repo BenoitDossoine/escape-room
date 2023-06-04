@@ -1,7 +1,7 @@
 class ImmersionService{
     public playBackgroundAudio = () => {
         let audio = document.getElementById("backgroundMusic") as HTMLAudioElement;
-        // audio.play();
+        audio.play();
         audio.volume = 0.5;
     }
     
