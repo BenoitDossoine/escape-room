@@ -11,16 +11,8 @@ function App() {
         src="./music/background.mp3"
         id="backgroundMusic"
       ></audio>
-      {!started?
-        <Intro 
-            startGame={()=>{
-              setStarted(true);
-              immersionService.playBackgroundAudio();
-              // immersionService.setFullScreen();
-            }}
-        />:
-        <Frame/>
-      }      
+    
+        <Frame/>      
     </div>
   );
 }

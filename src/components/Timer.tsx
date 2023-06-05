@@ -9,7 +9,7 @@ function Timer(){
     useEffect(()=>{
         setTimerOn(true);
         const secondsTimer = interval(1000);
-        const endTimer = timer(3600*1000 + 1);
+        const endTimer = timer(900*1000 + 1);
         
         const seconds = secondsTimer.pipe(
             tap(val => setTime(val+1)),
@@ -29,8 +29,8 @@ function Timer(){
     },[]);
 
     const displayTimer = () => {
-        const minutes = Math.floor((3600-time)/60)<10?"0"+Math.floor((3600-time)/60):Math.floor((3600-time)/60);
-        const seconds = (3600-time)%60<10?"0"+(3600-time)%60:(3600-time)%60;
+        const minutes = Math.floor((900-time)/60)<10?"0"+Math.floor((900-time)/60):Math.floor((900-time)/60);
+        const seconds = (900-time)%60<10?"0"+(900-time)%60:(900-time)%60;
         return minutes + ":" + seconds;
     }
     return(

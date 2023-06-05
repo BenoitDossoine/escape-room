@@ -1,18 +1,26 @@
 .introContainer{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-
-    width: 35%;
-    
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     background-color: $background-color;
-    border: 4px solid $main-color;
     
     color: $main-color;
     font-size: 25px;
 
-    padding: 0 3% 1%;
+    position: relative;
+
+
+    overflow-y: scroll;
+    overflow-anchor: none;
+
+    .promptTextContainer{
+        margin-top: 1em;
+        padding-left: 1.5em;
+        position: relative;
+        &:last-child(){
+            margin-bottom: 1em;
+        }
+    }
 
     .introInput{
         height: 25px;
@@ -25,5 +33,25 @@
         border: none;
 
         text-transform: uppercase;
+        margin-bottom: 1em;
+    }
+
+    .Typewriter{
+        display: inline-block;
+        margin-bottom: 1em;
+
+        &::before{
+            content: '>';
+            position: absolute;
+            top: 0;
+            left: 0.5em;
+        }
+    }
+
+    .promptText::before{
+        content: '>';
+        position: absolute;
+            top: 0;
+            left: 0.5em;
     }
 }
