@@ -11,9 +11,13 @@ function Intro(props:any){
     let [helpVisible,setHelpVisible] = useState(false);
 
     let [briefingVisible, setBriefingVisible] = useState(false);
+    
+    let [startVisible, setStartVisible] = useState(false);
 
-    const handleDone = () => {
-        setInputVisible(true);
+
+    const updateScroll = () => {
+        var element = document.getElementsByClassName("introContainer")[0];
+        element.scrollTop = element.scrollHeight;
     }
 
     useEffect(()=>{
@@ -57,7 +61,7 @@ function Intro(props:any){
                                 typewriter.typeString(' Welcome, agent #16486. Are you ready to start? (Y/N)')
                                 .pauseFor(1000)
                                 .callFunction(() => {
-                                    handleDone();
+                                    setInputVisible(true);
                                 })
                                 .start();
                             }}
@@ -77,12 +81,11 @@ function Intro(props:any){
                             if(e.target.value === "Y" || e.target.value === "y"){
                                 document.addEventListener("keydown", (event)=>{
                                     setBriefingVisible(true);
-                                    document.removeEventListener("keydown",(event)=>props.startGame());
+                                    document.removeEventListener("keydown",(event)=>setBriefingVisible(true));
                                 })
                             } else {
                                 document.addEventListener("keydown", (event)=>{
                                     e.target.value = "";
-                                    document.removeEventListener("keydown",(event)=>props.startGame());
                                 })
                             }
                         }}
@@ -102,25 +105,43 @@ function Intro(props:any){
                                     .typeString("We don't know what he's planned, but it can't be anything good. <br><br>")
                                     .typeString("One of our sources tells us that all the answers to his plans can be found in the time he was a student at the academy himself.<br>")
                                     .typeString("Now, it turns out that he and you have something in common: your dorm room was once his! <br>")
-                                    .typeString("Since you know the environment well, it will be your mission to go back in time to find out what that traitor has planned! <br><br>")
+                                    .typeString("Since you know the environment well, it will be your mission to go back in time to find out what that traitor has planned! <br>")
+                                    .typeString("<br>")
+                                    .callFunction(()=>updateScroll())
                                     .typeString("We have installed the latest version of our time-travel program on your personal computer. It's waiting for you in your dorm.<br>")
+                                    .callFunction(()=>updateScroll())
                                     .typeString("Since you're a student, you're still a ... liabilty. That's why your pc is locked. Prove to us you're the agent for this job by unlocking it!<br>")
-                                    .typeString("We'll be in contact once you achieve this.<br><br>")
+                                    .callFunction(()=>updateScroll())
+                                    .typeString("<br>")
+                                    .callFunction(()=>updateScroll())
+                                    .typeString("We'll be in contact once you achieve this.<br>")
+                                    .typeString("<br>")
+                                    .callFunction(()=>updateScroll())
                                     .pauseFor(1000)
                                     .typeString("If we can believe our calculations, you have 15 minutes to make the time jump, after which it will be too late.<br>")
+                                    .callFunction(()=>updateScroll())
                                     .typeString("The Operations department has provided you with a timer, that should appear ")
+                                    .callFunction(()=>updateScroll())
                                     .callFunction(()=>setTimerVisible(true))
-                                    .typeString("now. Keep an eye on it!<br><br>")
+                                    .callFunction(()=>updateScroll())
+                                    .typeString("now. Keep an eye on it!<br>")
+                                    .callFunction(()=>updateScroll())
+                                    .typeString("<br>")
                                     .pauseFor(2500)
-                                    .typeString("Should you have questions, you can always request some informations via this ")
+                                    .callFunction(()=>updateScroll())
+                                    .typeString("Should you have questions, you can always request some information via this ")
                                     .callFunction(()=>setHelpVisible(true))
+                                    .callFunction(()=>updateScroll())
                                     .typeString("button.<br>")
                                     .pauseFor(1000)
+                                    .callFunction(()=>updateScroll())
                                     .typeString("Information will be scarce, but we have faith you won't need this tool.<br><br>")
+                                    .callFunction(()=>updateScroll())
                                     .typeString("Do you accept your mission, agent? (Y/N)")
                                     .callFunction(() => {
-                                        handleDone();
+                                        setStartVisible(true);
                                     })
+                                    .callFunction(()=>updateScroll())
                                     .start();
                                 }}
                                 options={{
@@ -131,7 +152,34 @@ function Intro(props:any){
                     </div>:
                     null
                 }
-                
+                <div className='promptTextContainer'>
+                    {startVisible?
+                    <span className='promptText'>
+                        <input 
+                        ref={introInput}
+                        autoFocus type="text" maxLength={1} className="introInput startInput"
+                        onInput={(e:any)=>{
+                            if(e.target.value === "Y" || e.target.value === "y"){
+                                document.addEventListener("keydown", (event)=>{
+                                    if(event.code === "Enter"){
+                                        props.startGame();
+                                        document.removeEventListener("keydown",(event)=>props.startGame());
+                                    }
+                                })
+                            } else {
+                                document.addEventListener("keydown", (event)=>{
+                                    if(event.code === "Enter"){
+                                        e.target.value = "";
+                                        document.removeEventListener("keydown",(event)=>e.target.value = "");
+                                    }
+                                })
+                            }
+                        }}
+                        ></input>
+                    </span>:
+                    null
+                    }
+                </div>
             </div>
         </>
         );
