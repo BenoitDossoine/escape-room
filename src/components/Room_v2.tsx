@@ -285,6 +285,7 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       <group name="Screen" 
         onClick={(e)=>{
           gameLogicService.handleClickEvent(e);
+          store.zoomedOnPc = true;
         }
       }>
         <mesh name="Screen" castShadow receiveShadow geometry={nodes.Screen.geometry} material={materials['Material.001']} position={[-130.85, 78.88, 72.53]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />

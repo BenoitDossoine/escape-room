@@ -34,7 +34,8 @@ export const store = proxy<{
     solvedRiddles: string[],
     currentHint: string,
     hintsOpen: boolean,
-    radioPlaying: boolean
+    radioPlaying: boolean,
+    zoomedOnPc: boolean
 }>
 ({
     zoomedIn: false,
@@ -50,5 +51,6 @@ export const store = proxy<{
     solvedRiddles: [],
     currentHint: '',
     hintsOpen: false,
-    radioPlaying: false
+    radioPlaying: false,
+    zoomedOnPc: false
 })
