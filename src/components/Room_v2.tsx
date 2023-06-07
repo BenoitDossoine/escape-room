@@ -80,7 +80,16 @@ type GLTFResult = GLTF & {
     Wall002: THREE.Mesh
     Wall003: THREE.Mesh
     Screen: THREE.Mesh
-    Screen_inner: THREE.Mesh
+    Screen_inner: THREE.Mesh,
+    SpeakerPart002: THREE.Mesh
+    SpeakerPart003: THREE.Mesh
+    SpeakerPart004: THREE.Mesh
+    SpeakerPart005: THREE.Mesh
+    SpeakerPart006: THREE.Mesh
+    SpeakerPart007: THREE.Mesh
+    SpeakerPart008: THREE.Mesh
+    SpeakerPart001: THREE.Mesh
+    Window: THREE.Mesh
   }
   materials: {
     rsMaterial1: THREE.MeshStandardMaterial
@@ -338,6 +347,15 @@ export function Room(props: JSX.IntrinsicElements['group']) {
           store.zoomedIn?gameLogicService.handleClickEvent(e):gameLogicService.handleClickEvent(e,"Closet");
         }}
       />
+      <mesh name="SpeakerPart002" geometry={nodes.SpeakerPart002.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="SpeakerPart003" geometry={nodes.SpeakerPart003.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="SpeakerPart004" geometry={nodes.SpeakerPart004.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="SpeakerPart005" geometry={nodes.SpeakerPart005.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="SpeakerPart006" geometry={nodes.SpeakerPart006.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="SpeakerPart007" geometry={nodes.SpeakerPart007.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="SpeakerPart008" geometry={nodes.SpeakerPart008.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="SpeakerPart001" geometry={nodes.SpeakerPart001.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="Window" geometry={nodes.Window.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
     </group>
   )
 }
