@@ -15,6 +15,11 @@ function Intro(props:any){
     let [startVisible, setStartVisible] = useState(false);
 
 
+    
+    /**
+     * Function to make the container scroll to the bottom, so that the lowest container is always visible
+     *
+     */
     const updateScroll = () => {
         var element = document.getElementsByClassName("introContainer")[0];
         element.scrollTop = element.scrollHeight;
@@ -26,6 +31,7 @@ function Intro(props:any){
             input.focus();
         }
     },[introInput])
+    
     return(
         <>
             {timerVisible?

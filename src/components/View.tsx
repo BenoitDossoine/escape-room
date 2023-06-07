@@ -5,7 +5,6 @@ import DialogBox from './DialogBox';
 import { Suspense, useRef } from 'react';
 import { Center } from '@react-three/drei';
 import { Room } from './Room_v2';
-import { store } from '../store/store';
 import ZoomOutButton from './ZoomOutButton';
 
 function View(){
@@ -15,11 +14,11 @@ function View(){
             <Canvas>
                 <perspectiveCamera position={[0,0,0]}/>
                 <Suspense>
-                    <directionalLight ref={directionalLight as any} position={[-110,-30,93]} rotation={[0,0,0]} intensity={1}/>
+                    <pointLight intensity={0.5}></pointLight>
+                    {/* <directionalLight ref={directionalLight as any} position={[-110,-30,93]} rotation={[0,0,0]} intensity={1}/> */}
                     <FlyControls/>
                     <Center>
                         <Room></Room>
-                        <ambientLight intensity={ 0.4 } />
                     </Center>
                 </Suspense>
             </Canvas>

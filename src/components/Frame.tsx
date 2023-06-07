@@ -7,7 +7,7 @@ import Timer from "./Timer";
 import View from "./View";
 
 function Frame(){
-  const [started,setStarted] = useState(false);
+  const [started,setStarted] = useState(true);
 
   return(
     <div className="frame-wrapper">
