@@ -15,10 +15,9 @@ function Frame(){
         {!started?
           <Intro 
             startGame={()=>{
-              console.log("hello!")
               setStarted(true);
               immersionService.playBackgroundAudio();
-              // immersionService.setFullScreen();
+              immersionService.setFullScreen();
             }}
           />:
           <>

@@ -11,10 +11,13 @@ class ImmersionService{
     }
 
     public setFullScreen = () => {
-        const body = document.getElementsByTagName("body")[0] as HTMLBodyElement;
-        if(body.requestFullscreen){
-            body.requestFullscreen();
+        if(document.fullscreenEnabled){
+            document.documentElement.requestFullscreen();
         }
+        // const body = document.getElementsByTagName("body")[0] as HTMLBodyElement;
+        // if(body.requestFullscreen){
+        //     body.requestFullscreen();
+        // }
     }
 }
 

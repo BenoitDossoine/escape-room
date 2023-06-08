@@ -89,7 +89,9 @@ type GLTFResult = GLTF & {
     SpeakerPart007: THREE.Mesh
     SpeakerPart008: THREE.Mesh
     SpeakerPart001: THREE.Mesh
-    Window: THREE.Mesh
+    Window: THREE.Mesh,
+    Roof: THREE.Mesh
+    Fan: THREE.Mesh
   }
   materials: {
     rsMaterial1: THREE.MeshStandardMaterial
@@ -113,6 +115,7 @@ type GLTFResult = GLTF & {
     Black_Color: THREE.MeshStandardMaterial
     Emit_Light: THREE.MeshStandardMaterial
     Sticker: THREE.MeshStandardMaterial
+    material: THREE.MeshStandardMaterial
   }
 }
 
@@ -356,6 +359,10 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       <mesh name="SpeakerPart008" geometry={nodes.SpeakerPart008.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="SpeakerPart001" geometry={nodes.SpeakerPart001.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Window" geometry={nodes.Window.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <mesh name="Roof" geometry={nodes.Roof.geometry} position={[0, 244.03, 0]} rotation={[-Math.PI,0,0]} scale={200.19}>
+        <meshStandardMaterial color={"beige"}></meshStandardMaterial>
+      </mesh>
+      <mesh name="Fan" geometry={nodes.Fan.geometry} material={materials.material} position={[0, 204.46, 0]} scale={0.18} />
     </group>
   )
 }

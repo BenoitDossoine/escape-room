@@ -9,6 +9,7 @@ import ZoomOutButton from './ZoomOutButton';
 
 function View(){
     const directionalLight = useRef() as any;
+    const pointLight = useRef() as any;
     return(
         <>
             <Canvas>
