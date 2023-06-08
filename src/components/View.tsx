@@ -7,6 +7,7 @@ import { Center } from '@react-three/drei';
 import { Room } from './Room_v2';
 import ZoomOutButton from './ZoomOutButton';
 import Loader from './Loader';
+import End from './End';
 
 function View(){
     const directionalLight = useRef() as any;

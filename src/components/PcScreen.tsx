@@ -1,7 +1,7 @@
 import { Html } from "@react-three/drei";
 import { store } from "../store/store";
 import { Circle, Hexagon, Square, Triangle } from "react-feather";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { gameLogicService } from "../services/GameLogicService";
 import { subscribeKey } from "valtio/utils";
 
