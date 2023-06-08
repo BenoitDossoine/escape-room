@@ -21,12 +21,26 @@
     font-weight: 500;
 
     .currentHint{
+        position: relative;
         background-color: $background-color;
         border: 1px solid $main-color;
         color: $main-color;
         text-align: end;
         margin: 1em;
+        margin-right: calc(1em + 10px);
         margin-left: 2em;
-        padding: 0.4em
+        padding: 0.4em;
+
+        &::after{
+            content: "";
+            position: absolute;
+            top: 100%;
+            right: 0;
+            border-width: 10px 10px 0 0;
+            border-style: solid;
+            border-color: $main-color transparent;
+            transform: skewX(60deg);
+        }
+        
     }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { store } from "../store/store";
 import { subscribeKey } from "valtio/utils";
 

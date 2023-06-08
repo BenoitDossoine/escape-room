@@ -17,7 +17,7 @@ class HintService{
                 store.currentHint = "I can't help you for the moment."
             }
         } else {
-            store.currentHint = "I can't help you for the moment."
+            store.currentHint = "Try to look around! The arrow keys should help you."
         }
     }
 }
