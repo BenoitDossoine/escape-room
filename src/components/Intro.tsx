@@ -85,8 +85,11 @@ function Intro(props:any){
                         autoFocus type="text" maxLength={1} className="introInput"
                         onInput={(e:any)=>{
                             if(e.target.value === "Y" || e.target.value === "y"){
-                                document.addEventListener("keydown", (event)=>{
+                                document.addEventListener("keydown", (event:any)=>{
                                     setBriefingVisible(true);
+                                    event.target.blur();
+                                    event.target.style.caretColor = "transparent"
+                                    
                                     document.removeEventListener("keydown",(event)=>setBriefingVisible(true));
                                 })
                             } else {

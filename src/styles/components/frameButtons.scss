@@ -2,7 +2,7 @@
     position: absolute;
     width: 80px;
     height: 80px;
-    background-color: black;
+    background-color: $background-color;
     border-radius: 50%;
     border: $main-color 4px solid;
     
@@ -22,13 +22,4 @@
             margin: 0;
         }
     }
-    
-    &.inventory-button{
-        bottom: -44px;
-        right: -44px;
-        
-        color: $main-color;
-    }
-
-
 }
