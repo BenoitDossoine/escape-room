@@ -17,7 +17,7 @@ function View(){
             <Suspense fallback={<Loader/>}>
                 <Canvas>
                     <perspectiveCamera position={[0,0,0]}/>
-                        <pointLight intensity={0.35}></pointLight>
+                        <pointLight intensity={0.35} position={[0,150,0]}></pointLight>
                         {/* <directionalLight ref={directionalLight as any} position={[-110,-30,93]} rotation={[0,0,0]} intensity={1}/> */}
                         <FlyControls/>
                         <Center>
