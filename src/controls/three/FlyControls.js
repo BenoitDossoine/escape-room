@@ -54,7 +54,7 @@ class FlyControls extends EventDispatcher {
     _defineProperty(this, "rotationVector", new Vector3(0, 0, 0));
 
     _defineProperty(this, "keydown", event => {
-      if (event.altKey || store.zoomedIn) {
+      if (event.altKey || store.zoomedIn || store.gameProgress.capacitorClicked || store.gameEnded || store.gameLost) {
         return;
       }
 

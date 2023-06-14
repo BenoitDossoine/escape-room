@@ -13,6 +13,7 @@ function Intro(props:any){
     let [briefingVisible, setBriefingVisible] = useState(false);
     
     let [startVisible, setStartVisible] = useState(false);
+    const startInput = useRef(null);
 
 
     
@@ -87,9 +88,6 @@ function Intro(props:any){
                             if(e.target.value === "Y" || e.target.value === "y"){
                                 document.addEventListener("keydown", (event:any)=>{
                                     setBriefingVisible(true);
-                                    event.target.blur();
-                                    event.target.style.caretColor = "transparent"
-                                    
                                     document.removeEventListener("keydown",(event)=>setBriefingVisible(true));
                                 })
                             } else {
@@ -164,10 +162,8 @@ function Intro(props:any){
                 <div className='promptTextContainer'>
                     {startVisible?
                     <span className='promptText'>
-                        <input 
-                        ref={introInput}
-                        autoFocus type="text" maxLength={1} className="introInput startInput"
-                        onInput={(e:any)=>{
+                        <input type="text" autoFocus maxLength={1} className="introInput startInput" 
+                            onInput={(e:any)=>{
                             if(e.target.value === "Y" || e.target.value === "y"){
                                 document.addEventListener("keydown", (event)=>{
                                     if(event.code === "Enter"){

@@ -1,26 +1,62 @@
 import { Html } from "@react-three/drei";
 import { store } from "../store/store";
 import { Circle, Hexagon, Square, Triangle } from "react-feather";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { gameLogicService } from "../services/GameLogicService";
 import { subscribeKey } from "valtio/utils";
+import { useThree } from "@react-three/fiber";
+import LoadingBar from "./LoadingBar";
 
 function PcScreen (){
     let [pcUnlocked,setPcUnlocked] = useState(store.gameProgress.pcUnlocked);
     let [disabled,setDisabled] = useState(!store.zoomedIn);
 
+    const state = useThree();
+
     const unsubscribe = subscribeKey(store, 'zoomedIn', (state)=>{setDisabled(!state); unsubscribe();});
 
-    const checkAnswer = (e:any) => {
-        // Only check when all 4 numbers are in the input field
-        if(e.target.value.length === 4){
-            setPcUnlocked(gameLogicService.checkPcCode(e.target.value));
-            if(!pcUnlocked){
-                e.target.style.color = "red";
-                // If wrong: empty field
+    const passwordInputs: any = document.getElementsByClassName("password-input");
+
+    const sliceInputValue = (e:any) => {
+        // Value may not be longer than 4 numbers
+        if(e.target.value.length>1){
+            e.target.value = e.target.value.slice(0,1);
+        }
+    }
+
+    const targetNextEmptyInput = (index:number) => {
+        for(let i = index + 1; i < 4; i++){
+            if(passwordInputs[i].value === ""){
+                passwordInputs[i].focus();
+                return;
+            }
+        }
+    }
+
+    const checkCode = () => {
+        const code = [];
+        for(let input of passwordInputs as any){
+            if(input.value == ""){
+                return;
+            }
+            code.push(input.value);
+        }
+        
+        if(code.length === 4){
+            setPcUnlocked(gameLogicService.checkPcCode(parseInt(code.join(""))));
+
+            if(!store.gameProgress.pcUnlocked){
+                for(let input of passwordInputs as any){
+                    input.classList.add('wrongAnswer');
+                    input.blur();
+                }
+                // If wrong: empty fields
                 const timer = setTimeout(()=>{
-                    e.target.value = "";
-                    e.target.style.color = "#FD7E25";
+                    for(let input of passwordInputs as any){
+                        input.classList.remove('wrongAnswer');
+                        input.value="";
+                    }
+                    passwordInputs[0].focus();
                     clearTimeout(timer);
                 }, 500);
             }
@@ -39,11 +75,13 @@ function PcScreen (){
             zIndexRange={[1,2]}
         >
             {pcUnlocked?
-                <div className="success-screen">
-                    <img src="./img/flux_capacitor.png" alt="" />
-                    <p style={{color:"orange"}}>timeTravel.exe</p>
-                </div>
-                :
+                store.gameProgress.capacitorClicked?
+                    <LoadingBar/>:
+                    <div className="success-screen">
+                        <img src="./img/flux_capacitor.png" alt="" onClick={()=>gameLogicService.startEnd(state.scene)}/>
+                        <p>timeTravel.exe</p>
+                    </div>
+               :
                 <div className="password-screen">
                     <div className="forms">
                         <Triangle/>
@@ -51,21 +89,45 @@ function PcScreen (){
                         <Circle/>
                         <Hexagon/>
                     </div>
-                    <input 
-                        type="number"
-                        maxLength={4} 
-                        pattern="\d*"
-                        className='screenInput'
-                        autoComplete="off"
-                        onChange={(e)=>checkAnswer(e)}
-                        onInput={(e:any)=>{
-                            // Value may not be longer than 4 numbers
-                            if(e.target.value.length>4){
-                                e.target.value = e.target.value.slice(0,4);
-                            }
-                        }}
-                        disabled={disabled}
-                    />
+                    <div className="psw-inputs">
+                        <input className="password-input" type="number" maxLength={1}
+                            onInput={(e:any)=>{
+                                sliceInputValue(e);
+                                if(e.target.value != ""){
+                                    targetNextEmptyInput(0);
+                                    checkCode();
+                                }
+                            }}
+                            disabled={disabled}
+                            />
+                        <input className="password-input" type="number" maxLength={1}
+                            onInput={(e:any)=>{
+                                sliceInputValue(e);
+                                if(e.target.value != ""){
+                                    targetNextEmptyInput(1);
+                                    checkCode();
+                                }
+                            }}
+                            disabled={disabled}
+                            />
+                        <input className="password-input" type="number" maxLength={1}
+                            onInput={(e:any)=>{
+                                sliceInputValue(e);
+                                if(e.target.value != ""){
+                                    targetNextEmptyInput(2);
+                                    checkCode();
+                                }
+                            }}
+                            disabled={disabled}
+                            />
+                        <input className="password-input" type="number" maxLength={1}
+                            onInput={(e:any)=>{
+                                sliceInputValue(e);
+                                checkCode();
+                            }}
+                            disabled={disabled}
+                        />
+                    </div>
                 </div>
             }
           </Html>
