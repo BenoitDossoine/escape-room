@@ -3,6 +3,7 @@ import { hintService } from "../services/HintService";
 import HintSystem from "./HintSystem";
 import { store } from "../store/store";
 import { subscribeKey } from "valtio/utils";
+import {motion} from 'framer-motion';
 
 function Help(){
     const [open,setOpen] = useState(store.hintsOpen);
@@ -19,7 +20,17 @@ function Help(){
     return(
         <>
             <button className="help-button frame-button" onClick={handleClick}>
-                <p>?</p>
+                <motion.p
+                    whileHover={{
+                        rotateY: 359,
+                        transition: { 
+                            duration: 1,
+                            repeat: Infinity
+                        },
+                    }}
+                >
+                    ?
+                </motion.p>
             </button>
             {open?
                 <HintSystem/>:
