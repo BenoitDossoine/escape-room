@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { interval, takeUntil, tap, timer } from "rxjs";
+import { store } from "../store/store";
 
 function Timer(){
     const [time,setTime] = useState(0);
@@ -20,7 +21,7 @@ function Timer(){
             )
         ).subscribe();
 
-        const endTimerSub = endTimer.subscribe(()=>console.log("end"));
+        const endTimerSub = endTimer.subscribe(()=>store.gameLost = true);
 
         return () => {
             seconds.unsubscribe();

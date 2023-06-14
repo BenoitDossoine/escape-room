@@ -37,7 +37,8 @@ export const store = proxy<{
     hintsOpen: boolean,
     radioPlaying: boolean,
     zoomedOnPc: boolean,
-    gameEnded: boolean
+    gameEnded: boolean,
+    gameLost: boolean
 }>
 ({
     zoomedIn: false,
@@ -56,5 +57,6 @@ export const store = proxy<{
     hintsOpen: false,
     radioPlaying: false,
     zoomedOnPc: false,
-    gameEnded: false
+    gameEnded: false,
+    gameLost: false
 })

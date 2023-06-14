@@ -5,10 +5,19 @@ import Intro from "./Intro";
 import Timer from "./Timer";
 import View from "./View";
 import Loader from "./Loader";
+import { subscribeKey } from "valtio/utils";
+import { store } from "../store/store";
+import GameLost from "./GameLost";
 
 function Frame(){
   const [started,setStarted] = useState(true);
   const [briefingStarted,setBriefingStarted] = useState(false);
+  const [gameLost, setGameLost] = useState(false);
+  const [gameEnded, setGameEnded] = useState(false);
+
+  const unsubscribeLost = subscribeKey(store, 'gameLost', (state)=>{setGameLost(state); unsubscribeLost();});
+  const unsubscribeEnded = subscribeKey(store, 'gameEnded', (state)=>{setGameEnded(state); unsubscribeEnded();});
+
   
   useEffect(() => {
       let timer = setTimeout(() => setBriefingStarted(true), 3000);
@@ -35,8 +44,18 @@ function Frame(){
           :
           <>
             <View></View>
-            <Timer></Timer>
-            <Help></Help>
+            {!gameEnded && !gameLost?
+              <>
+                <Timer></Timer>
+                <Help></Help>
+              </>:
+              null
+            }
+            {
+              gameLost?
+                <GameLost/>:
+                null
+            }
           </>
         }
       </div>
