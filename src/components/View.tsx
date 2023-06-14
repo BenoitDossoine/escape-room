@@ -1,29 +1,44 @@
-import {Canvas} from '@react-three/fiber';
+import {Canvas, useThree} from '@react-three/fiber';
 import { FlyControls } from '../controls/react-three-fiber/FlyControls';
 
 import DialogBox from './DialogBox';
-import { Suspense, useRef } from 'react';
-import { Center } from '@react-three/drei';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { Center, RandomizedLight } from '@react-three/drei';
 import { Room } from './Room_v2';
 import ZoomOutButton from './ZoomOutButton';
 import Loader from './Loader';
 import End from './End';
+import { useSpring } from 'framer-motion';
+import { store } from '../store/store';
+import { subscribeKey } from 'valtio/utils';
 
 function View(){
-    const directionalLight = useRef() as any;
-    const pointLight = useRef() as any;
+    let [gameEnded,setGameEnded] = useState(store.gameEnded);
+
+    const unsubscribe = subscribeKey(store, 'gameEnded', (state)=>{setGameEnded(state); unsubscribe();});
+
     return(
         <>
             <Suspense fallback={<Loader/>}>
-                <Canvas>
-                    <perspectiveCamera position={[0,0,0]}/>
-                        <pointLight intensity={0.35} position={[0,150,0]}></pointLight>
-                        {/* <directionalLight ref={directionalLight as any} position={[-110,-30,93]} rotation={[0,0,0]} intensity={1}/> */}
+                {!gameEnded?
+                    <Canvas>
+                        <perspectiveCamera position={[0,0,0]} rotation={[0,0,0]}/>
+                            <pointLight name="mainLight" intensity={0.35} position={[0,150,0]}></pointLight>
+                            <FlyControls/>
+                            <Center>
+                                <Room/>
+                            </Center>
+                    </Canvas>:
+                    <Canvas>
+                    <perspectiveCamera position={[0,0,0]} rotation={[0,0,0]}/>
+                        <ambientLight/>
+                        <pointLight name="mainLight" intensity={0.35} position={[0,150,0]}></pointLight>
                         <FlyControls/>
                         <Center>
-                            <Room></Room>
+                            <End/>
                         </Center>
-                </Canvas>
+                    </Canvas>
+                }
             </Suspense>
             <DialogBox/>
             <ZoomOutButton/>

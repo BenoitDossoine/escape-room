@@ -14,6 +14,15 @@ class CameraService{
         store.hintsOpen = false;
         store.currentEvent = {};
     }
+
+    public zoomEnd = () => {
+        store.zoomedIn = false;
+        store.cameraPosition = {x: -70, y: -30, z: 94};
+    }
+    
+    public zoomIntoScreen = () => {
+        store.cameraPosition = {x: -190, y: -30, z: 94};
+    }
 }
 
 export const cameraService = new CameraService();

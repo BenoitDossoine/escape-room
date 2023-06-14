@@ -21,7 +21,8 @@ type CameraRotation = {
 type GameProgress = {
     pcUnlocked: boolean,
     tabletUnlocked: boolean,
-    hologramActivated: boolean
+    hologramActivated: boolean,
+    capacitorClicked: boolean
 }
 
 
@@ -35,7 +36,8 @@ export const store = proxy<{
     currentHint: string,
     hintsOpen: boolean,
     radioPlaying: boolean,
-    zoomedOnPc: boolean
+    zoomedOnPc: boolean,
+    gameEnded: boolean
 }>
 ({
     zoomedIn: false,
@@ -46,11 +48,13 @@ export const store = proxy<{
     gameProgress: {
         pcUnlocked: false,
         tabletUnlocked: false,
-        hologramActivated: false
+        hologramActivated: false,
+        capacitorClicked: false
     },
     solvedRiddles: [],
     currentHint: '',
     hintsOpen: false,
     radioPlaying: false,
-    zoomedOnPc: false
+    zoomedOnPc: false,
+    gameEnded: false
 })

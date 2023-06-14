@@ -4,10 +4,14 @@ import { Circle, Hexagon, Square, Triangle } from "react-feather";
 import { useState } from "react";
 import { gameLogicService } from "../services/GameLogicService";
 import { subscribeKey } from "valtio/utils";
+import { useThree } from "@react-three/fiber";
+import LoadingBar from "./LoadingBar";
 
 function PcScreen (){
     let [pcUnlocked,setPcUnlocked] = useState(store.gameProgress.pcUnlocked);
     let [disabled,setDisabled] = useState(!store.zoomedIn);
+
+    const state = useThree();
 
     const unsubscribe = subscribeKey(store, 'zoomedIn', (state)=>{setDisabled(!state); unsubscribe();});
 
@@ -71,11 +75,13 @@ function PcScreen (){
             zIndexRange={[1,2]}
         >
             {pcUnlocked?
-                <div className="success-screen">
-                    <img src="./img/flux_capacitor.png" alt="" onClick={()=>console.log("end")}/>
-                    <p>timeTravel.exe</p>
-                </div>
-                :
+                store.gameProgress.capacitorClicked?
+                    <LoadingBar/>:
+                    <div className="success-screen">
+                        <img src="./img/flux_capacitor.png" alt="" onClick={()=>gameLogicService.startEnd(state.scene)}/>
+                        <p>timeTravel.exe</p>
+                    </div>
+               :
                 <div className="password-screen">
                     <div className="forms">
                         <Triangle/>

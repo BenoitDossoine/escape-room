@@ -14,9 +14,10 @@ import { useFrame } from '@react-three/fiber'
 import PcScreen from './PcScreen'
 import Tablet from './Tablet'
 import { useSpring, animated } from '@react-spring/three'
-import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
+import { Bloom, EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
 import HologramContainer from './HologramContainer'
 import RadioAudio from './RadioAudio'
+import SpeakerAudio from './SpeakerAudio'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -122,17 +123,21 @@ type GLTFResult = GLTF & {
 export function Room(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('models/room_v2-transformed.glb') as GLTFResult;
   const vec = new THREE.Vector3();
+
+  // Definitions of glowing elements
   const hologramBaseMesh:any = useRef();
+  const speakerMesh: any = useRef();
 
   const [active,setActive] = useState(false);
   const {buttonPosition}:any = useSpring({buttonPosition: !active? [0,0,0]: [0.02,-0.02,0.02]})
   
+  // Definitions for radio buttons
   const [play,setPlay] = useState(false);
   const {playButtonPosition}:any = useSpring({playButtonPosition: play?[162.24,84,-0.33]:[162.24, 85.14, -0.33]});
   const {pauseButtonPosition}:any = useSpring({pauseButtonPosition: play?[162.24,86.2,-0.33]:[162.24, 85.14, -0.33]});
 
   useFrame((state)=>{
-    if(store.zoomedIn){
+    if(store.zoomedIn || store.gameProgress.capacitorClicked){
       state.camera.position.lerp(vec.set(store.cameraPosition.x,store.cameraPosition.y,store.cameraPosition.z),0.08);
       state.camera.rotation.set(store.cameraRotation.x,store.cameraRotation.y,store.cameraRotation.z);
       state.camera.updateProjectionMatrix();
@@ -284,8 +289,11 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       </group>
       <group name="Screen" 
         onClick={(e)=>{
-          gameLogicService.handleClickEvent(e);
-          store.zoomedOnPc = true;
+          // When in end sequence, you can't zoom anymore
+          if(!store.gameProgress.capacitorClicked){
+            gameLogicService.handleClickEvent(e);
+            store.zoomedOnPc = true;
+          }
         }
       }>
         <mesh name="Screen" castShadow receiveShadow geometry={nodes.Screen.geometry} material={materials['Material.001']} position={[-130.85, 78.88, 72.53]} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
@@ -340,9 +348,6 @@ export function Room(props: JSX.IntrinsicElements['group']) {
           }
         </mesh>
         <mesh name="Large_Control_Knob_Knob_Shiny_Green_0_4" geometry={nodes.Large_Control_Knob_Knob_Shiny_Green_0_4.geometry} material={materials.Emit_Light}/>
-        <EffectComposer>
-          <SelectiveBloom selection={hologramBaseMesh} mipmapBlur luminanceThreshold={1} luminanceSmoothing={1} />
-        </EffectComposer>
       </group>
       <mesh
         name="Plant" geometry={nodes.Plant.geometry} material={materials['Material.001']}
@@ -351,19 +356,49 @@ export function Room(props: JSX.IntrinsicElements['group']) {
           store.zoomedIn?gameLogicService.handleClickEvent(e):gameLogicService.handleClickEvent(e,"Closet");
         }}
       />
-      <mesh name="SpeakerPart002" geometry={nodes.SpeakerPart002.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="SpeakerPart003" geometry={nodes.SpeakerPart003.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="SpeakerPart004" geometry={nodes.SpeakerPart004.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="SpeakerPart005" geometry={nodes.SpeakerPart005.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="SpeakerPart006" geometry={nodes.SpeakerPart006.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="SpeakerPart007" geometry={nodes.SpeakerPart007.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="SpeakerPart008" geometry={nodes.SpeakerPart008.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
-      <mesh name="SpeakerPart001" geometry={nodes.SpeakerPart001.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+      <group>
+        <mesh name="SpeakerPart001" ref={speakerMesh} geometry={nodes.SpeakerPart001.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+            <meshStandardMaterial side={THREE.BackSide} emissive={'#FD7E25'} opacity={1} emissiveIntensity={1} toneMapped={false}/>
+            <SpeakerAudio position={"right"}/>
+        </mesh>
+        <mesh name="SpeakerPart002" geometry={nodes.SpeakerPart005.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+          <meshStandardMaterial side={THREE.DoubleSide} emissive={'#FD7E25'} opacity={1} emissiveIntensity={1} toneMapped={false}/>  
+            <SpeakerAudio position={"left"}/>
+        </mesh>
+        <mesh name="SpeakerPart003" geometry={nodes.SpeakerPart008.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+          <meshStandardMaterial side={THREE.DoubleSide} emissive={'#FD7E25'} opacity={1} emissiveIntensity={1} toneMapped={false}/>  
+            <SpeakerAudio position={"right"}/>
+        </mesh>
+        <mesh name="SpeakerPart004" geometry={nodes.SpeakerPart004.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+          <meshStandardMaterial side={THREE.DoubleSide} emissive={'#FD7E25'} opacity={1} emissiveIntensity={1} toneMapped={false}/>   
+            <SpeakerAudio position={"left"}/>
+        </mesh>
+        <mesh name="SpeakerPart005" geometry={nodes.SpeakerPart007.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+          <meshStandardMaterial side={THREE.DoubleSide} emissive={'#FD7E25'} opacity={1} emissiveIntensity={1} toneMapped={false}/>  
+            <SpeakerAudio position={"right"}/>
+        </mesh>
+        <mesh name="SpeakerPart006" geometry={nodes.SpeakerPart003.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+          <meshStandardMaterial side={THREE.DoubleSide} emissive={'#FD7E25'} opacity={1} emissiveIntensity={1} toneMapped={false}/>   
+            <SpeakerAudio position={"left"}/>
+        </mesh>
+        <mesh name="SpeakerPart007" geometry={nodes.SpeakerPart006.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+          <meshStandardMaterial side={THREE.DoubleSide} emissive={'#FD7E25'} opacity={1} emissiveIntensity={1} toneMapped={false}/>  
+            <SpeakerAudio position={"right"}/>
+        </mesh>
+        <mesh name="SpeakerPart008" geometry={nodes.SpeakerPart002.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+          <meshStandardMaterial side={THREE.DoubleSide} emissive={'#FD7E25'} opacity={1} emissiveIntensity={1} toneMapped={false}/>
+            <SpeakerAudio position={"left"}/>
+        </mesh>
+      </group>
       <mesh name="Window" geometry={nodes.Window.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
       <mesh name="Roof" geometry={nodes.Roof.geometry} position={[0, 244.03, 0]} rotation={[-Math.PI,0,0]} scale={200.19}>
         <meshStandardMaterial color={"beige"}></meshStandardMaterial>
       </mesh>
       <mesh name="Fan" geometry={nodes.Fan.geometry} material={materials.material} position={[0, 204.46, 0]} scale={0.18} />
+      <EffectComposer>
+        <SelectiveBloom selection={hologramBaseMesh} mipmapBlur luminanceThreshold={1} luminanceSmoothing={1} />
+        <Bloom/>
+      </EffectComposer>
     </group>
   )
 }

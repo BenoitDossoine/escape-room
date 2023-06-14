@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { immersionService } from "../services/ImmersionService";
 import Help from "./Help";
 import Intro from "./Intro";
-import Inventory from "./Inventory";
 import Timer from "./Timer";
 import View from "./View";
 import Loader from "./Loader";
 
 function Frame(){
-  const [started,setStarted] = useState(false);
+  const [started,setStarted] = useState(true);
   const [briefingStarted,setBriefingStarted] = useState(false);
   
   useEffect(() => {
