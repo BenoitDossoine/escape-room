@@ -1,0 +1,46 @@
+.hintsContainer{
+    z-index: 1000;
+    
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: 20%;
+    height: 50%;
+    
+    background-color: #121212;
+    background-size: 60px 60px;
+    background-image: linear-gradient(to right, rgba(253, 127, 37, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(253, 126, 37,0.3) 1px, transparent 1px);
+    background-repeat: repeat;
+    background-position: -10px -10px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    font-family: $font-family;
+    font-weight: 500;
+
+    .currentHint{
+        position: relative;
+        background-color: $background-color;
+        border: 1px solid $main-color;
+        color: $main-color;
+        text-align: end;
+        margin: 1em;
+        margin-right: calc(1em + 10px);
+        margin-left: 2em;
+        padding: 0.4em;
+
+        &::after{
+            content: "";
+            position: absolute;
+            top: 100%;
+            right: 0;
+            border-width: 10px 10px 0 0;
+            border-style: solid;
+            border-color: $main-color transparent;
+            transform: skewX(60deg);
+        }
+        
+    }
+}

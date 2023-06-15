@@ -1,0 +1,136 @@
+{
+    "Poster":{
+        "name": "Poster",
+        "type": "zoom",
+        "eventData": {
+            "viewPos": {"x": -60,"y":35,"z":-120},
+            "viewRot": {"x": 0,"y":0, "z":0}
+        }
+    },
+    "Filmposters_left":{
+        "name": "Filmposters_left",
+        "type": "zoom",
+        "eventData": {
+            "viewPos": {"x":70,"y":35, "z":110},
+            "viewRot": {"x": 0,"y":3.14, "z":0}
+        }
+    },
+    "Filmposters_right":{
+        "name": "Filmposters_right",
+        "type": "zoom",
+        "eventData": {
+            "viewPos": {"x":-50,"y":32, "z":100},
+            "viewRot": {"x": 0,"y":3.14, "z":0}
+        }
+    },
+    "Mat":{
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Mat",
+            "dialogText": "Just a dusty old mat."
+        }
+    },
+    "Bin":{
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Bin",
+            "dialogText": "It's empty."
+        }
+    },
+    "Screen":{
+        "name": "Screen",
+        "type": "zoom",
+        "eventData":{
+            "viewPos": {"x": -88,"y":-30,"z":92},
+            "viewRot": {"x": 0,"y": 1.5707,"z":0}
+        }
+    },
+    "Shelf_group":{
+        "name": "Shelf_group",
+        "type": "zoom",
+        "eventData": {
+            "viewPos": {"x": 60, "y":30, "z":-100},
+            "viewRot": {"x":0,"y":0,"z":0}
+        }
+    },
+    "Closet":{
+        "name": "Closet",
+        "type": "zoom",
+        "eventData":{
+            "viewPos": {"x": -80,"y":0,"z":-92},
+            "viewRot": {"x": 0,"y": 1.5707,"z":0}
+        }
+    },
+    "Dinosaur":{
+        "name": "Dinosaur",
+        "type": "dialog",
+        "eventData":{
+            "dialogTitle": "Tyranosaurus 'Jef' Rex",
+            "dialogText": "A simple lego dinosaur."
+        }
+    },
+    "Tablet":{
+        "name": "Tablet",
+        "type": "zoom",
+        "eventData":{
+            "viewPos":{"x": -75,"y":-40,"z":40},
+            "viewRot":{"x":0,"y":0.9,"z":0}
+        }
+    },
+    "Hologram":{
+        "name": "Hologram",
+        "type": "zoom",
+        "eventData":{
+            "viewPos":{"x": 130,"y":-59,"z":120},
+            "viewRot":{"x":0,"y":-2.3,"z":0}
+        }
+    },
+    "Skateboard":{
+        "name": "Skateboard",
+        "type": "dialog",
+        "eventData":{
+            "dialogTitle": "Skateboard",
+            "dialogText": "My old skateboard!"
+        }
+    },
+    "Nightstand": {
+        "name": "NightStand",
+        "type": "zoom",
+        "eventData":{
+            "viewPos":{"x":150,"y":-25,"z":0},
+            "viewRot":{"x":0,"y":-1.57,"z":0}
+        }
+    },
+    "Radio": {
+        "name": "Radio",
+        "type": "zoom",
+        "eventData":{
+            "viewPos":{"x":150,"y":-25,"z":0},
+            "viewRot":{"x":0,"y":-1.57,"z":0}
+        }
+    },
+    "Plant": {
+        "name": "Plant",
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Plant",
+            "dialogText": "The only plant I could keep alive..."
+        }
+    },
+    "Bed": {
+        "name": "Bed",
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Bed",
+            "dialogText": "I don't have time for a nap!"
+        }
+    },
+    "Scale": {
+        "name": "Scale",
+        "type": "dialog",
+        "eventData": {
+            "dialogTitle": "Scale",
+            "dialogText": "Let's not stand on that..."
+        }
+    }
+}

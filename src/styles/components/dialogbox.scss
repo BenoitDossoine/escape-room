@@ -1,0 +1,99 @@
+.dialogBoxContainer{
+    z-index: 1000;
+    position: absolute;
+    width: 25%;
+    min-width: 250px;
+    // aspect-ratio: 16/9;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+     
+    .dialogBox{
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+
+        box-sizing: border-box;
+        
+        background-color: $background-color;
+        box-shadow: 0 0 5px 5px $background-color;
+        
+
+        font-family: $font-family;
+        color: $main-color;
+        
+        &::after{
+            content:"";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+
+            background-size: 60px 60px;
+            background-image: linear-gradient(to right, rgba(253, 127, 37, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(253, 126, 37,0.3) 1px, transparent 1px);
+            background-repeat: repeat;
+            background-position: -10px -10px;
+            animation: backgroundAnimation 10s infinite linear;
+
+            pointer-events: none;
+        }
+
+        .dialogContent{
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            padding: 1em;
+
+            .dialogTitle{
+                font-weight: 900;
+                font-size: 30px;
+                margin: 0.2em 0.2em;
+            }
+    
+            .dialogContent{
+                font-size: 20px;
+                font-weight: 600;
+            }
+    
+            .dialogProceedBtn{
+                margin: 0;
+                padding: 0.5em 1em;
+                background-color: $main-color;
+                color: $background-color;
+                justify-self: flex-end;
+                font-family: $font-family;
+
+                font-weight: 500;
+                font-size: 15px;
+                align-self: flex-end;
+                text-transform: uppercase;
+            }
+
+            // Medium devices (tablets, less than 992px)
+            @media (max-width: 1199.98px) { 
+                .dialogTitle{
+                    font-size: 25px;
+                }
+        
+                .dialogContent{
+                    font-size: 15px;
+                }
+
+                .dialogProceedBtn{
+                    font-size: 12px;
+                }
+             }
+        }
+    }
+}

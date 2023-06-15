@@ -1,0 +1,76 @@
+.introContainer{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: $background-color;
+    
+    color: $main-color;
+    font-size: 25px;
+
+    position: relative;
+
+    padding: 0.5em;
+
+
+    overflow-y: scroll;
+    overflow-anchor: none;
+
+    &::-webkit-scrollbar{
+        width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+        border-radius: 10px;
+        border: solid 3px transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px $main-color;
+        border: solid 3px transparent; 
+    }
+
+    .promptTextContainer{
+        margin-top: 0.5em;
+        padding-left: 1.5em;
+        padding-right: 1em;
+        position: relative;
+    }
+
+    .introInput{
+        height: 25px;
+
+        font-size: 25px;
+        color: $main-color;
+        caret-color: $main-color;
+
+        background-color: transparent;
+        border: none;
+
+        text-transform: uppercase;
+
+        &.startInput{
+            margin-bottom: 45px;
+        }
+    }
+
+    .Typewriter{
+        display: inline-block;
+        margin-bottom: 1em;
+
+        &::before{
+            content: '>';
+            position: absolute;
+            top: 0;
+            left: 0.5em;
+        }
+    }
+
+    .promptText::before{
+        content: '>';
+        position: absolute;
+            top: 0;
+            left: 0.5em;
+    }
+}

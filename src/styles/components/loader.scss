@@ -1,0 +1,70 @@
+.loaderContainer{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+    background-color: $background-color;
+
+
+    p{
+        margin: 0;
+        color: $main-color;
+        font-weight: bold;
+        text-align: center;
+        font-size: 50px;
+        text-transform: uppercase;
+
+        animation: pulse 5s ease-in-out infinite;
+        // animation: glow 12s linear infinite;
+        text-shadow: $main-color 0 0 15px;
+    }
+
+    .hand{
+        transform-origin: center;
+    }
+
+    .hours{
+        animation: rotate 12s linear infinite;
+    }
+    
+    .minutes{
+        animation: rotate 1s linear infinite;
+    }
+
+    @keyframes glow {
+        from{
+            text-shadow: $main-color 0 0 20px;
+        }
+        to{
+        }
+    }
+
+    @keyframes pulse {
+        from{
+            scale: 0.95;
+        }
+        50%{
+            scale: 1.05;
+        }
+        to{
+            scale: 0.95;
+        }
+    }
+
+    @keyframes rotate {
+        from{
+            transform: rotateZ(359.99deg);
+        }
+        to{
+            transform: rotateZ(0deg);
+        }
+    }
+}

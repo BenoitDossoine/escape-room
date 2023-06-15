@@ -1,0 +1,25 @@
+.frame-button{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: $background-color;
+    border-radius: 50%;
+    border: $main-color 4px solid;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100;
+    &.help-button{
+        bottom: -44px;
+        left: -44px;
+        
+        color: $main-color;
+        p{
+            font-size: 4rem;
+            font-family: $font-family;
+            margin: 0;
+        }
+    }
+}

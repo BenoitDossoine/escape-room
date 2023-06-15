@@ -1,0 +1,79 @@
+.screen{
+    .success-screen{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p{
+            margin: 0;
+            font-size: 6px;
+            margin-top: 1px;
+            color: $main-color;
+        }
+        img{
+            width: 50px;
+        }
+    }
+    .password-screen{
+        .forms{
+            padding-bottom: 10px;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            svg{
+                color: $main-color;
+                
+                &:not(:last-child){
+                    margin-right: 5px;
+                }
+            }
+        }
+        
+        .psw-inputs{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: center;
+
+            .password-input{
+                width: 25px;
+                box-sizing: border-box;
+
+                border: 1px solid grey;
+                caret-color: transparent;
+                color: $main-color;
+                background-color: black;
+
+                font-family: $font-family;
+                text-align: center;
+                
+                &.wrongAnswer{
+                    border-color: red;
+                }
+                
+                &:not(:last-child){
+                    margin-right: 5px;
+                }
+
+                // remove arrows
+                -moz-appearance:textfield;
+
+                &::-webkit-inner-spin-button, 
+                &::-webkit-outer-spin-button { 
+                    -webkit-appearance: none; 
+                    margin: 0;
+                }
+
+                &:focus{
+                    border-color: $main-color;
+                }
+            }
+
+
+        }
+    }
+    }
