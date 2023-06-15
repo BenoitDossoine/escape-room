@@ -2,7 +2,7 @@ class ImmersionService{
     public playBackgroundAudio = () => {
         let audio = document.getElementById("backgroundMusic") as HTMLAudioElement;
         audio.play();
-        audio.volume = 0.5;
+        audio.volume = 0.3;
     }
     
     public pauseBackgroundAudio = () => {
@@ -14,10 +14,6 @@ class ImmersionService{
         if(document.fullscreenEnabled){
             document.documentElement.requestFullscreen();
         }
-        // const body = document.getElementsByTagName("body")[0] as HTMLBodyElement;
-        // if(body.requestFullscreen){
-        //     body.requestFullscreen();
-        // }
     }
 }
 
