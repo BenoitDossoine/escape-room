@@ -1,5 +1,4 @@
 .screen{
-
     .success-screen{
         display: flex;
         flex-direction: column;
@@ -31,7 +30,6 @@
                     margin-right: 5px;
                 }
             }
-            
         }
         
         .psw-inputs{
@@ -52,14 +50,17 @@
 
                 font-family: $font-family;
                 text-align: center;
-
+                
                 &.wrongAnswer{
                     border-color: red;
                 }
-
+                
                 &:not(:last-child){
                     margin-right: 5px;
                 }
+
+                // remove arrows
+                -moz-appearance:textfield;
 
                 &::-webkit-inner-spin-button, 
                 &::-webkit-outer-spin-button { 

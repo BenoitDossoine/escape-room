@@ -10,7 +10,7 @@ import { store } from "../store/store";
 import GameLost from "./GameLost";
 
 function Frame(){
-  const [started,setStarted] = useState(true);
+  const [started,setStarted] = useState(false);
   const [briefingStarted,setBriefingStarted] = useState(false);
   const [gameLost, setGameLost] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
