@@ -1,7 +1,6 @@
-import { Dodecahedron, Html, Icosahedron, Octahedron, Plane, Polyhedron, Sphere, Tetrahedron, Text } from "@react-three/drei";
+import { Html, Plane } from "@react-three/drei";
 import PatternGame from "./PatternGame";
 
-import { extend } from "@react-three/fiber";
 import { store } from "../store/store";
 import { subscribeKey } from "valtio/utils";
 import { useState } from "react";

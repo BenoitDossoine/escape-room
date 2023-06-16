@@ -13,9 +13,6 @@ function Intro(props:any){
     let [briefingVisible, setBriefingVisible] = useState(false);
     
     let [startVisible, setStartVisible] = useState(false);
-    const startInput = useRef(null);
-
-
     
     /**
      * Function to make the container scroll to the bottom, so that the lowest container is always visible

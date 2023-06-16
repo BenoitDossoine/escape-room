@@ -1,4 +1,5 @@
 import { Folder } from 'react-feather';
+
 function Inventory(){
     const handleClick = () => {
         console.log("inventory clicked!")

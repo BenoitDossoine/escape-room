@@ -59,14 +59,6 @@ class FlyControls extends EventDispatcher {
       }
 
       switch (event.code) {
-        case 'ArrowUp':
-          this.moveState.pitchUp = 1;
-          break;
-
-        case 'ArrowDown':
-          this.moveState.pitchDown = 1;
-          break;
-
         case 'ArrowLeft':
           this.moveState.yawLeft = 1;
           break;
@@ -82,14 +74,6 @@ class FlyControls extends EventDispatcher {
 
     _defineProperty(this, "keyup", event => {
       switch (event.code) {
-        case 'ArrowUp':
-          this.moveState.pitchUp = 0;
-          break;
-
-        case 'ArrowDown':
-          this.moveState.pitchDown = 0;
-          break;
-
         case 'ArrowLeft':
           this.moveState.yawLeft = 0;
           break;
