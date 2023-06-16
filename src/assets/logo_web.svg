@@ -53,10 +53,10 @@
 		</g>
 	</g>
 	<g>
-		<rect x="235.1" y="185.7" class="st0" width="8" height="39.8"/>
+		<rect x="235.1" y="185.7" class="st0 hand hours" width="8" height="39.8"/>
 	</g>
 	<g>
-		<rect x="235.1" y="135.7" class="st0" width="8" height="89.8"/>
+		<rect x="235.1" y="135.7" class="st0 hand minutes" width="8" height="89.8"/>
 	</g>
 </g>
 <g class="st1">

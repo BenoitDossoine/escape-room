@@ -1,14 +1,13 @@
-import {Canvas, useThree} from '@react-three/fiber';
+import {Canvas} from '@react-three/fiber';
 import { FlyControls } from '../controls/react-three-fiber/FlyControls';
 
 import DialogBox from './DialogBox';
-import { Suspense, useEffect, useRef, useState } from 'react';
-import { Center, RandomizedLight } from '@react-three/drei';
+import { Suspense, useState } from 'react';
+import { Center } from '@react-three/drei';
 import { Room } from './Room_v2';
 import ZoomOutButton from './ZoomOutButton';
 import Loader from './Loader';
 import End from './End';
-import { useSpring } from 'framer-motion';
 import { store } from '../store/store';
 import { subscribeKey } from 'valtio/utils';
 

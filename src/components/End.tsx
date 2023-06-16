@@ -1,14 +1,13 @@
-import { Center, Effects, Environment, Float, Plane, Text3D } from "@react-three/drei";
-import { Canvas, extend, useThree } from "@react-three/fiber";
-import { EffectComposer, SelectiveBloom, Scanline, Glitch, Bloom } from "@react-three/postprocessing";
+import { Float, Text3D } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { EffectComposer, Scanline, Glitch, Bloom } from "@react-three/postprocessing";
 import { BlendFunction, GlitchMode } from "postprocessing";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 
 
 function End(props:any){
     const state = useThree();
-    console.log(state.camera);
     useEffect(()=>{
         state.camera.position.set(0,0,60);
         state.camera.rotation.set(0,0,0);

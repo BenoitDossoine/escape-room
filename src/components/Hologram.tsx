@@ -1,4 +1,4 @@
-import { Center, Cone, Edges, Float, GradientTexture, Plane, Ring, Tetrahedron, Text, Text3D } from "@react-three/drei";
+import { Center, Cone, Edges, Float, GradientTexture, Text3D } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
@@ -9,10 +9,10 @@ function Hologram(){
     const cone: any = useRef();
     const text:any = useRef();
 
-
     useFrame(({clock})=>{
         mesh.current.rotation.y = clock.getElapsedTime()/2;
     });
+    
     return(
             <>  
                 <Cone args={[0.8,1.2,4]} ref={mesh} scale={1} position={[0,1.5,0]}>
