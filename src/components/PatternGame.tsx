@@ -45,9 +45,7 @@ function PatternGame(props:any){
         }
 
         setGrid([...newGrid]);
-        if(amountClicked == 47){
-            checkSolution(newGrid);
-        }
+        checkSolution(newGrid);
     }
 
     const checkSolution = (grid: Array<boolean[]>) => {
